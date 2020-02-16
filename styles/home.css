@@ -1,0 +1,282 @@
+.home-pg-1{
+    position: relative;
+    height: 80vh;
+}
+.background-wrp{
+    position: absolute;
+    background-color: goldenrod;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+.background{
+    position: relative;
+    height: 100%;
+}
+
+.background .bg-img{
+    background-image: url(../assets/images/bed-bedroom-comfort-1@2x.jpg);
+    /* background-image: url(../assets/images/bed-bedroom-comfort-1@2x.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+
+}
+
+.background .overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.459);
+}
+.search-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.search-tab{
+    background-color:#b7872793;
+    border-radius: 100px;
+    text-align: center;
+    color: white;
+    margin: 25px 0;
+    width: 100%;
+    padding: 0;
+}
+
+.search-tab .tab{
+    margin: 0;
+    padding: 0;
+}
+.search-tab .tab .tab-item{
+    display: inline-block;
+    list-style-type: none;
+    padding: 0;
+}
+
+.tab .tab-item .tab-link{
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    font-weight: 900;
+    padding: 15px 0;
+    border-radius: 100px;
+}
+.tab .tab-item .tab-link.active{
+  background-color: white;
+  color: #b78727;
+}
+
+.foreground-wrp{
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
+.content-wrp{
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-content: center;
+}
+
+.text-desc-wrp .text-desc{
+    margin: 5px 0;
+    color: white;
+}
+.text-desc-wrp .text-desc h1{
+    font-size: 3em;
+}
+
+
+.text-desc-wrp .text-desc .gold-text{
+    color: gold;
+}
+
+
+.search-form form{
+background-color: #ffffff8c;
+padding: 5px;
+border-radius: 100px;
+}
+
+.search-form .form{
+    padding: 30px 10px;
+}
+.search-form form select{
+    color: #6c757d;
+    opacity: 1;
+}
+
+
+
+/*the container must be positioned relative:*/
+.custom-select {
+    position: relative;
+    font-family: Arial;
+  }
+  
+  .custom-dropdown select {
+    display: none; /*hide original SELECT element:*/
+  }
+  
+  button{
+    background: none;
+    border: none;
+    color: #b78727;
+    transition: transform .5s ease;
+    outline: none;
+    text-decoration: none;
+  } 
+  button:hover{
+      transform-origin: center;
+      transform: scale(1.08) rotate(15deg);
+      cursor: pointer;
+  }
+  
+  /*style the arrow inside the select element:*/
+  .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #b78727 transparent transparent transparent;
+    /* border-color: #fff transparent transparent transparent; */
+  }
+  
+  /*point the arrow upwards when the select box is open (active):*/
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
+  
+  /*style the items (options), including the selected item:*/
+  .select-items div,.select-selected {
+    color: #b78727;
+    padding: 8px 16px;
+    text-align: center;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 900;
+  }
+  
+  /*style items (options):*/
+  .select-items {
+    position: absolute;
+    background-color: white;
+    top: 117%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    
+  }
+  .select-items div:not(:last-of-type) {
+    border-bottom: 1px solid #b78727;
+  }
+  
+  /*hide the items when the select box is closed:*/
+  .select-hide {
+    display: none;
+  }
+  
+  .select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+.destination-wrp{
+    padding: 35px;
+}
+.dest-content-text{
+    text-align: center;
+}
+
+.dest-content-text h4,.dest-content-text p{
+    color: #b78727;
+    text-transform: capitalize;
+}
+.dest-content-text h4{
+    font-weight: 900;
+    font-size: 1.5em;
+}
+.dest-content-text p{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.dest-content-text p::after{
+    content: " ";
+    height: 3px;
+    width: 100px;
+    background-color: #b78727;
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    left: 0;
+    margin: auto;
+
+}
+
+.box-wrp .box{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    color:#b78727;
+    box-shadow: 3px 10px 20px 8px rgba(0,0,0,0.1),10px 12px 15px 5px rgba(0,0,0,0.1),10px 12px 6px rgba(0,0,0,0.01);
+    border-radius: 15px;
+    padding: 30px 15px;
+    transition: all .5s ease;
+}
+
+.box-wrp .box:hover{
+    background-color: #b78727;
+    color: white;
+    cursor: pointer;
+ }
+.box-wrp .box .map-icon{
+    margin-bottom: 10px;
+}
+
+/*mobile rules*/
+
+@media (max-width: 575.98px) {
+.text-desc-wrp .text-desc{
+    text-align: center;
+}
+
+.box-wrp .box{
+    padding: 10px 5px;
+}
+
+.box-wrp .box p{
+    font-size: .8em;
+    color: #b78727b7;
+}
+.box-wrp .box:hover p{
+    color: white;
+}
+
+.sm-half{
+    width: 50% !important;
+}
+
+}
+
+@media (max-width: 767.98px) {
+    .home-pg-1{
+        height: 100vh;
+    }
+
+    .text-desc-wrp .text-desc h1{
+        font-size: 2em;
+    }
+}
