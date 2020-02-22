@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles/bs/bs.min.css">
-    <link rel="stylesheet" href="styles/fa/css/all.min.css">
-    <link rel="stylesheet" href="styles/mh/mh.css">
-    <link rel="stylesheet" href="styles/house-info.css">
+    <link rel="stylesheet" href="/template/bs/bs.min.css">
+    <link rel="stylesheet" href="/template/fa/css/all.min.css">
+    <link rel="stylesheet" href="/template/mh/mh.css">
+    <link rel="stylesheet" href="/template/house-info.css">
     <title>MainHouse-house information page</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
                 <div class="house">
                     <div class="house-img">
                         <div class="img-pc">
-                            <img src="../assets/images/Bitmap-3.jpg" class="img-fluid" alt="" intrinsicsize="1902px">
+                            <img src="/assets/images/Bitmap-3.jpg" class="img-fluid" alt="" intrinsicsize="1902px">
 
                         </div>
                         <div class="img-overlay-wrp">
@@ -173,22 +173,22 @@
                                 <div class="row">
                                     <div class=" col-md-3 col-sm-6 sm-half mb-3">
                                         <div class="box-wrp">
-                                                <img src="../assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
+                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
                                         </div>
                                     </div>
                                     <div class=" col-md-3 col-sm-6 sm-half mb-3">
                                         <div class="box-wrp">
-                                                <img src="../assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
+                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
                                         </div>
                                     </div>
                                     <div class=" col-md-3 col-sm-6 sm-half mb-3">
                                         <div class="box-wrp">
-                                                <img src="../assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
+                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
                                         </div>
                                     </div>
                                     <div class=" col-md-3 col-sm-6 sm-half mb-3">
                                         <div class="box-wrp">
-                                                <img src="../assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
+                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -196,22 +196,22 @@
                                     <div id="morePhotos" class="row d-none">
                                         <div class=" col-md-3 col-sm-6 sm-half mb-3">
                                             <div class="box-wrp">
-                                                    <img src="../assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
+                                                    <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class=" col-md-3 col-sm-6 sm-half mb-3">
                                             <div class="box-wrp"> 
-                                                <img src="../assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
+                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class=" col-md-3 col-sm-6 sm-half mb-3">
                                             <div class="box-wrp">
-                                                <img src="../assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
+                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
                                             </div>
                                         </div>
                                         <div class=" col-md-3 col-sm-6 sm-half mb-3">
                                             <div class="box-wrp">
-                                                <img src="../assets/images/house-thumbnail.jpg" class="img-fluid" alt=""> 
+                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt=""> 
                                             </div>
                                         </div>
                                         

@@ -15,8 +15,7 @@
 }
 
 .background .bg-img{
-    background-image: url(../assets/images/bed-bedroom-comfort-1@2x.jpg);
-    /* background-image: url(../assets/images/bed-bedroom-comfort-1@2x.jpg); */
+    background-image: url(../images/home-hero.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -48,6 +47,10 @@
     padding: 0;
 }
 
+.search-tab form{
+    padding: 5px;
+}
+
 .search-tab .tab{
     margin: 0;
     padding: 0;
@@ -66,7 +69,9 @@
     font-weight: 900;
     padding: 15px 0;
     border-radius: 100px;
+    cursor: pointer;
 }
+
 .tab .tab-item .tab-link.active{
   background-color: white;
   color: #b78727;
@@ -100,16 +105,16 @@
 }
 
 
-.search-form form{
+.form-wrp form{
 background-color: #ffffff8c;
 padding: 5px;
 border-radius: 100px;
 }
 
-.search-form .form{
+.form-wrp .form{
     padding: 30px 10px;
 }
-.search-form form select{
+.form-wrp form select{
     color: #6c757d;
     opacity: 1;
 }
@@ -125,16 +130,17 @@ border-radius: 100px;
   .custom-dropdown select {
     display: none; /*hide original SELECT element:*/
   }
-  
   button{
     background: none;
     border: none;
+  }
+  .search-form-bg button{
     color: #b78727;
     transition: transform .5s ease;
     outline: none;
     text-decoration: none;
   } 
-  button:hover{
+  .search-form-bg button:hover{
       transform-origin: center;
       transform: scale(1.08) rotate(15deg);
       cursor: pointer;
@@ -178,7 +184,8 @@ border-radius: 100px;
     left: 0;
     right: 0;
     z-index: 99;
-    
+    max-height: 165px;
+    overflow-y: auto;
   }
   .select-items div:not(:last-of-type) {
     border-bottom: 1px solid #b78727;
@@ -233,7 +240,7 @@ border-radius: 100px;
     align-items: center;
     align-content: center;
     color:#b78727;
-    box-shadow: 3px 10px 20px 8px rgba(0,0,0,0.1),10px 12px 15px 5px rgba(0,0,0,0.1),10px 12px 6px rgba(0,0,0,0.01);
+   box-shadow: 0px 3px 4px -6px rgba(0,0,0,0.1), 0px 4px 6px 0px rgba(0,0,0,0.1), 10px 12px 6px rgba(0,0,0,0.01);
     border-radius: 15px;
     padding: 30px 15px;
     transition: all .5s ease;
@@ -269,6 +276,10 @@ border-radius: 100px;
 
 .sm-half{
     width: 50% !important;
+}
+
+.select-items div,.select-selected{
+    font-size: .85em;
 }
 
 }

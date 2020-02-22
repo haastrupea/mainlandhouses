@@ -1,5 +1,5 @@
 <?php
-
+include_once 'lib/request.php';
 class Router{
     private $requestMethods=['POST','GET'];//valid http request methods
 
@@ -22,7 +22,7 @@ class Router{
         //use regex form of the route as they key of route dictionary
         $this->{strtolower($name)}[$routeKey]['method']=$method;//method to call when a route matches a uri
         $this->{strtolower($name)}[$routeKey]['route']=$route;// the original route specified
-        $this->{strtolower($name)}[$routeKey]['request']="new Request";// the original route specified
+        $this->{strtolower($name)}[$routeKey]['request']=new Request();// the original route specified
     }
 
     /**

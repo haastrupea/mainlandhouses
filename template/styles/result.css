@@ -5,6 +5,9 @@
     border: none;
     background:none;
     color: white !important;
+    display: block;
+    height: 100%;
+    width: 100%;
 
 }
 .search-btn{
@@ -118,6 +121,7 @@ cursor: pointer;
     .result-list-wrp{
         margin: 25px 0;
       }
+    
 }
 /*repeated in home*/
 .sm-half{
@@ -176,18 +180,22 @@ cursor: pointer;
     cursor: pointer;
     user-select: none;
     font-weight: 900;
+    font-size: .85em;
   }
+
   
   /*style items (options):*/
   .select-items {
     position: absolute;
     background-color: white;
-    top: 117%;
+    top: 100%;
     left: 0;
     right: 0;
     z-index: 99;
-    
+    max-height: 165px;
+    overflow-y: auto;
   }
+  
   .select-items div:not(:last-of-type) {
     border-bottom: 1px solid #b78727;
   }
