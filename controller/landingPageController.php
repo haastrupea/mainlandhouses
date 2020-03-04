@@ -3,7 +3,7 @@ class landingPageController{
     private $model;
     private function priceform(){
         //model
-        $priceRange=$this->model->priceRange();
+        $allprice=$this->model->priceRange();
         $countByHouse=$this->model->countAllHouseByLocation();
 
         //variable 
@@ -46,6 +46,7 @@ class landingPageController{
     
     private function home(){
         //model
+        $allprice=$this->model->priceRange();
         $countByHouse=$this->model->countAllHouseByLocation();
 
         //variable 

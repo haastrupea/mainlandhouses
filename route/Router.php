@@ -1,7 +1,7 @@
 <?php
-include_once 'lib/request.php';
 class Router{
     private $requestMethods=['POST','GET'];//valid http request methods
+    private $customErrorPage="";
 
     /**
      * magic method that respond when request method is called as a method of router object
@@ -122,20 +122,11 @@ class Router{
             $routeDict=$this->selectRoute($this->{$requestMethod});//select the route dictionary that match the uri given
     
             if(!empty($routeDict)){
-                // var_dump($routeDict);
-                // var_dump($_SERVER['REQUEST_URI']);
                 $this->callBack($routeDict);
             }else{
-                //custom redirect
-                if (isset($this->{$requestMethod}['\/Redirect'])) {
-                   $this->redirect($requestMethod);
-                }
+                //check if there is a custom error page
                 
-                if (isset($this->{$requestMethod}['error404'])) {
-                    //custom 404
-                    //use callBack or string
-                }
-                
+                $this->redirect($requestMethod);
             }
         }
     }
@@ -159,21 +150,24 @@ class Router{
      */
     protected function redirect($requestMethod){
         //custom redirect handler
-        $routeDict=$this->{$requestMethod};
-        $redirect=$routeDict['\/Redirect'];
-        $path=$redirect['method'];
-        if (is_callable($path)) {
-            //use callBack for redirect
-            $this->callBack($redirect);
-        }elseif(is_string($path)){
-            //build standard link from given string
-           
-            if(!is_file($path) || !is_dir($path) || !filter_var($path,FILTER_VALIDATE_URL)){
-                header("Location: {$path}");
-                exit();
-            }
-            return;
+        $errPath=$this->customErrorPage;
+        if(strtolower($requestMethod)==="get" && !empty($errPath)){
+            $url=filter_var($errPath,FILTER_SANITIZE_URL);
+            header("Location: $url");
+            exit();
         }
+
+        if(strtolower($requestMethod)==="post"){
+            echo "you are here because you made a wrong call to this endpoint";
+            exit();
+        }
+
+        header("Location: /");
+        exit();
+    }
+
+    public function errorPage($path){
+        $this->customErrorPage=$path;
     }
 
     /**

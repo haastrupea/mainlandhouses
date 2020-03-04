@@ -1,59 +1,40 @@
 <?php
 class resultPageController{
     private $model;
-    private function price($param)
+    private function price($price)
     {
-        $allLocation=$this->model->getAllLocations();
-        $allPropsType=$this->model->getAllPropsModel();
-
-        $rangeDelimeter="-";
-        //get houses with price Range
-        $param=explode($rangeDelimeter,$param);
-
-        $lower=$param[0];
-        $upper=$param[1];
-
-        $result=$this->model->gethouseWithPriceRange($lower,$upper);
-        // $allLocation=$this->model->getAllLocations();
-         //views
-       $resultView= new resultPageView();
-       include_once $resultView->run();
-
+      $this->generalSearch($price,null,null);
     }
 
-    private function location($param)
+    private function location($location)
     {
-        
-        $allPropsType=$this->model->getAllPropsModel();
-        $allLocation=$this->model->getAllLocations();
-
-        $result=$this->model->gethouseByLocation($param);
-
-         //views
-       $resultView= new resultPageView();
-       include_once $resultView->run();
+      $this->generalSearch(null,$location,null);
     }
 
-    private function proptype($param)
+    private function proptype($propType)
     {
-        $allPropsType=$this->model->getAllPropsModel();
-        $allLocation=$this->model->getAllLocations();
-
-        $result=$this->model->gethouseByPropType($param);
-
-
-        //views
-      $resultView= new resultPageView();
-      include_once $resultView->run();
+       $this->generalSearch(null,null,$propType);
+    }
+    private function searchForm($param){
+      $this->generalSearch($param['price'],$param['location'],$param['propType']);
     }
 
-    private function generalSearch($param){
+
+    protected function generalSearch($price="",$location="",$propType=""){
+      //general info
+        $allprice=$this->model->priceRange();
         $allPropsType=$this->model->getAllPropsModel();
         $allLocation=$this->model->getAllLocations();
+
+        $location=urldecode($location);
+        $price=urldecode($price);
+        $propType=urldecode($propType);
+
         
         //param is from post request submitted on result page
-        $result=$this->model->generalHouseSearch($param);
-        // var_dump($param);
+        $result=$this->model->houseSearch($price,$location,$propType);
+
+
         //views
       $resultView= new resultPageView();
       include_once $resultView->run();
@@ -61,7 +42,7 @@ class resultPageController{
     }
     public function run($action,$param) 
     {
-        //load the model into this Object
+        //load the model into controller Object
         $this->model=new housedataModel;
         if(method_exists($this,$action)){
             $this->{$action}($param);
