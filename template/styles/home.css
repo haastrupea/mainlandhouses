@@ -2,6 +2,10 @@
     position: relative;
     height: 80vh;
 }
+
+#home-notice{
+    z-index: 9999;
+}
 .background-wrp{
     position: absolute;
     background-color: goldenrod;
@@ -28,9 +32,9 @@
     top: 0;
     bottom: 0;
     width: 100%;
-    background-image:linear-gradient(45deg, red ,#b78727);
+    /* background-image:linear-gradient(45deg, red ,#b78727); */
     background-color: rgba(0, 0, 0, 0.459);
-    opacity: .4;
+    opacity: .9;
 }
 .search-form{
     display: flex;
@@ -120,6 +124,14 @@ border-radius: 100px;
 }
 
 
+.form-control.custom-select{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
+    text-transform: capitalize;
+}
+
 
 /*the container must be positioned relative:*/
 .custom-select {
@@ -127,7 +139,7 @@ border-radius: 100px;
     font-family: Arial;
   }
   
-  .custom-dropdown select {
+  .show.custom-dropdown select {
     display: none; /*hide original SELECT element:*/
   }
   button{
@@ -136,11 +148,14 @@ border-radius: 100px;
   }
   .search-form-bg button{
     color: #b78727;
-    transition: transform .5s ease;
     outline: none;
     text-decoration: none;
   } 
-  .search-form-bg button:hover{
+  .search-form-bg button::before{
+    transition: transform .5s ease;
+    display: inline-block;
+  }
+  .search-form-bg button:hover::before{
       transform-origin: center;
       transform: scale(1.08) rotate(15deg);
       cursor: pointer;
@@ -244,6 +259,7 @@ border-radius: 100px;
     border-radius: 15px;
     padding: 30px 15px;
     transition: all .5s ease;
+    text-transform: capitalize;
 }
 
 .box-wrp .box:hover{

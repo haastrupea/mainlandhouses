@@ -1,6 +1,21 @@
 .search-result{
-    padding: 25px;
+    padding: 0 25px 25px;
 }
+
+.search-form-wrp{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+}
+
 .search-form-bg button{
     border: none;
     background:none;
@@ -24,7 +39,7 @@ label{
 }
 
 .result-list-wrp{
-  margin: 25px 0;
+  margin: 100px 0 25px;
 }
 
 .house .house-img{
@@ -35,6 +50,10 @@ label{
   border-radius: 6px;
   overflow: hidden;
   position: relative;
+  display: block;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.6);
+  outline: none;
 }
 .house-wrp .house:hover{
 cursor: pointer;
@@ -112,16 +131,30 @@ cursor: pointer;
   min-width: 30%;
   text-align: center;
   font-size: .9em;
+  text-transform: capitalize;
+}
+
+.house-desc .house-bed{
+padding-left: .69em;
 }
 
 @media (max-width: 575.98px){
     .search-form-bg{
         border-radius: 0px;
     }
-    .result-list-wrp{
-        margin: 25px 0;
-      }
+   
+    .result-list-wrp {
+        margin-top: 180px;
+    }
     
+}
+
+@media(max-width: 800px) and (orientation:landscape){
+ 
+  .result-list-wrp {
+      margin-top: 160px;
+  }
+  
 }
 /*repeated in home*/
 .sm-half{
@@ -134,19 +167,34 @@ cursor: pointer;
     font-family: Arial;
   }
   
-  .custom-dropdown select {
+  .show.custom-dropdown select {
     display: none; /*hide original SELECT element:*/
   }
   
+  .form-control.custom-select{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
+ }
+
+  .search-btn {
+    padding: 0 !important;
+  }
   button{
     background: none;
     border: none;
     color: #b78727;
-    transition: transform .5s ease;
     outline: none;
     text-decoration: none;
+    cursor: pointer;
   } 
-  button:hover{
+
+  button::before{
+    transition: transform .5s ease;
+    display: inline-block;
+  }
+  button:hover::before{
       transform-origin: center;
       transform: scale(1.08) rotate(15deg);
       cursor: pointer;

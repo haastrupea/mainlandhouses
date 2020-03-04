@@ -2,25 +2,19 @@
     position: relative;
 }
 .house-wrp .house{
-  /* box-shadow: 3px 6px 12px rgba(0,0,0,0.1),3px 6px 12px rgba(0,0,0,0.1); */
-  overflow: hidden;
   position: relative;
 }
 
 .house-hr{
-
  background-color: rgba(183, 135, 39, 0.2);
-
-
  width: 90%;
- /* margin: auto; */
 }
 .house-img .img-overlay-wrp{
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0,0,0,0.2);
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.2);
 }
 .house-img .img-overlay{
  position: relative;
@@ -67,20 +61,21 @@
  flex-direction: column;
 }
 
-.slide-control-wrp .slide-control a{
+.slide-control-wrp .slide-control span{
  width: 20px;
  height: 20px;
  border-radius: 50%;
  background-color: hsla(40, 65%, 44%, 0.5);
  margin-bottom:10px;
  transition: transform .2s ease;
+ cursor: pointer;
  }
 
- .slide-control-wrp .slide-control a:hover{
+ .slide-control-wrp .slide-control span:hover{
    transform: scale(1.2);
   }
 
- .slide-control-wrp .slide-control a.active{
+ .slide-control-wrp .slide-control span.active{
  background-color: rgba(255, 255, 255, 0.7);
   }
 .slide-control-wrp .slide-control a.active:hover{
@@ -89,7 +84,6 @@
 
 .house .house-info{
   display: flex;
-  /* align-items: center; */
   flex: 0 1 auto;
   margin: 0 15px;
   flex-direction: column;
@@ -133,12 +127,14 @@
   align-items: center;
   align-content: center;
   box-shadow: 3px 6px 12px rgba(0,0,0,.2);
-  transition: transform .3s ease;
+  transition: transform .3s ease,background .3s ease, color .3s ease;
 }
 
 .request-btn:hover{
   transform: scale(1.1);
   cursor: pointer;
+  background-color: #33c694;;
+  color: white;
 }
 
 .request-btn a{
@@ -153,8 +149,7 @@
 
 
 .request-btn a span{
-  font-size: .7em;
-  /* margin-top: 5px; */
+  font-size: .8em;
   }
 
   .request-btn a i{
@@ -192,12 +187,12 @@
   align-items: center;
   align-content: center;
   color:#b78727;
-  /* box-shadow: 3px 10px 20px 8px rgba(0,0,0,0.1),10px 12px 15px 5px rgba(0,0,0,0.1),10px 12px 6px rgba(0,0,0,0.01); */
   border-radius: 15px;
   padding: 15px 0;
   
   transition: all .5s ease;
   background-color: white;
+  text-transform: capitalize;
 }
 
 .box-wrp .box:hover{
@@ -205,10 +200,24 @@
   color: white;
   cursor: pointer;
 }
-.box-wrp .box .map-icon{
+.box-wrp .box .icon{
   margin-bottom: 10px;
 }
 
+.amenities .amenity-hide{
+  display: none;
+}
+
+.amenities.show-more .amenity-hide{
+  display: block;
+}
+.house-photo .photo-hide{
+  display: none;
+}
+
+.house-photo.show-more .photo-hide{
+  display: block;
+}
 .photo-gallery-title{
   margin: 0;
   padding: 15px 10px;
@@ -221,6 +230,36 @@
   padding-right: 0;
 }
 
+
+.img-pc{
+  position: relative;
+  display: flex;
+  flex: 1 1 100%;
+  overflow: hidden;
+}
+
+.img-pc img{
+  min-width: 100%;
+}
+
+/* Fading animation */
+
+.slide-fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
 
 @media (max-width: 575.98px) {
   .house-desc-para{
@@ -236,6 +275,9 @@
   .img-overlay .house-price{
     font-size: 1em;
  
+}
+label{
+  font-size: .9em;
 }
   
   }
@@ -259,4 +301,48 @@
         height: 80vh;
         overflow: hidden;
     }
+}
+
+
+.position-fixed{
+  top: 0;
+}
+
+.position-fixed #modal-request.modal,.position-fixed #modal-request-successful.modal{
+  display: block !important;
+  overflow-y: scroll;
+}
+.position-fixed .form-control{
+transition: border .3s ease;
+}
+
+.position-fixed .form-control:focus{
+  box-shadow: none !important;
+  border-color: #b78727;
+  border-left: 10px solid #b78727;
+}
+
+.position-fixed .input-group-text {
+ 
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  background-color:  #b78727;;
+  border: 1px solid  #b78727;;
+  border-radius: .25rem;
+}
+
+.position-fixed .btn-request {
+  color: #fff;
+  background-color: #b78727;
+  border-color: #b78727;
+}
+label{
+  text-transform: capitalize;
+}
+label[for=instalment_duration]{
+  background-color: aliceblue;
+    padding: 5px 10px;
+    border: 1px solid aliceblue;
+    border-radius: 10px;
 }
