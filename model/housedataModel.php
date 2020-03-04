@@ -21,7 +21,7 @@ class housedataModel{
     public function getAmenityIcon()
     {
         //everything in lowercase
-        $dictFaIcon=["parking"=>"fa fa-parking","wifi"=>"fas fa-wifi","mall"=>"fas fa-shopping-cart","bank"=>"fas fa-piggy-bank","cinema"=>"fas fa-film","university"=>"fas fa-university","road"=>"fas fa-road","security"=>"fas fa-lock"];
+        $dictFaIcon=["parking"=>"fa fa-parking","wifi"=>"fas fa-wifi","mall"=>"fas fa-shopping-cart","bank"=>"fas fa-piggy-bank","cinema"=>"fas fa-film","school"=>"fas fa-university","road"=>"fas fa-road","security"=>"fas fa-lock"];
         return $dictFaIcon;
     }
     public function getAllLocations()
@@ -122,11 +122,9 @@ class housedataModel{
     public function getHouseInfoById($id)
     {
         //search db for house info and gallery
-        $house=["id"=>1,'location'=>'Gbagada','type'=>'duplex','category'=>"new",'fixed_price_currency'=>'NGN',"fixed_price"=>"12,500,000","propType"=>"detached","size_measure_unit"=>"sqft","size_measurement"=>10,"room"=>3,"bath"=>3,"description"=>"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus sed obcaecati optio saepe voluptatum 
-excepturi facilis cumque. Sapiente ea earum dolorem, accusantium nemo, quia cum, impedit molestiae iusto 
-itaque voluptatibus,Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus sed obcaecati optio saepe voluptatum 
-excepturi facilis cumque. Sapiente ea earum dolorem, accusantium nemo, quia cum, impedit molestiae iusto 
-itaque voluptatibus!",'amenities'=>"parking,wifi,mall,bank,cinema,university,road,security"];
+        $sql="SELECT id,area_located as location,onInstalment, houseCategory as type, category, fixed_price_currency,fixed_price,propType,size_measure_unit,size_measurement,room,bath,description,amenities FROM Houses where CAST(id as UNSIGNED)=?";
+        $house=$this->dbCon->crudQuery($sql,[$id]);
+        
         return $house;   
     }
 

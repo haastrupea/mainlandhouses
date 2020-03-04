@@ -19,7 +19,8 @@
                     <div class="house-img">
                         <div class="img-pc">
                             <?php foreach ($slidePhotos as $key => $value): ?>
-                            <img data-index="<?php echo "{$key}" ?>" src="/assets/images/<?php echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid slide-fade" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
+                            <img data-index="<?php echo "{$key}" ?>" src="/assets/images/<?php echo "house_01_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid slide-fade" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
+                            <!-- <img data-index="<?php echo "{$key}" ?>" src="/assets/images/<?php //echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid slide-fade" alt="<?php //echo $value['view']; ?> view" title="<?php //echo $value['description'] ?>"> -->
                             <?php endforeach; ?>
                         </div>
                         <div class="img-overlay-wrp">
@@ -109,7 +110,8 @@
                                 <?php foreach ($housephoto as $key => $value): ?>
                                     <div class=" col-md-3 col-sm-6 sm-half mb-3 animated fadeInDown <?php echo ($key>=$photoShowMax)?"photo-hide":""; ?>">
                                         <div class="box-wrp">
-                                            <img src="/assets/images/<?php echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
+                                            <img src="/assets/images/<?php echo "house_01_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
+                                            <!-- <img src="/assets/images/<?php //echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid" alt="<?php //echo $value['view']; ?> view" title="<?php //echo $value['description'] ?>"> -->
                                         </div>
                                     </div>
 
@@ -166,15 +168,21 @@
       </div>
     <div class="col-10 instalment_plan">
     <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="pay" id="full-payment" value="full">
-  <label class="form-check-label" for="full-payment">Full Payment(<?php echo "$housePrice" ?>)</label>
+  <input class="form-check-input" type="radio" name="pay" id="full-payment" value="full" checked>
+  <label class="form-check-label" for="full-payment">Full Payment(<?php echo $housePrice ?>)</label>
 </div>  
-
+<?php if($onInstall==true): ?>
     <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="pay" id="instalment" value="instalment" checked>
+  <input class="form-check-input" type="radio" name="pay" id="instalment" value="instalment">
   <label class="form-check-label" for="instalment">Instalment (<?php echo $InstalmentCurrency; ?><span id="instalment_price_show"><?php echo "$instalment" ?></span>)</label>
-</div>     
 </div>
+<?php else: ?>
+    <small class="d-block w-75 alert alert-info" for="instalment">This house has no installment Plan</small>
+<?php endif; ?>
+
+</div>
+
+<?php if($onInstall==true): ?>
     <div id="instalment-plan" class="col-8 offset-2 animated fadeIn">
     <div class="form-group">
     <input type="hidden" id="Instalment_per"  name="instalment_per" value="<?php echo $per; ?>">
@@ -188,6 +196,10 @@
     </datalist>
     </div>
   </div>
+    <?php endif; ?>
+
+
+
 </div>
 <div class="form-group">
     <label for="exampleInputEmail1">Personal Note(optional)</label>

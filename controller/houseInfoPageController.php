@@ -28,29 +28,33 @@ class houseInfoPageController{
             }
         }// select front,palour and kitchen view from all the pictures in the gallery
 
-
         //load all house info into variables
-        $houseId=$houseInfo['id'];
-        $houseCat=$houseInfo['category'];
-        $houseLocation=$houseInfo['location'];
-        $housePrice="{$houseInfo['fixed_price_currency']}{$houseInfo['fixed_price']}";
-        $housePropType=$houseInfo['propType'];
-        $housesize="{$houseInfo['size_measurement']}{$houseInfo['size_measure_unit']}";
-        $houseRoom=$houseInfo['room'];
-        $houseBath=$houseInfo['bath'];
-        $houseDesc=$houseInfo['description'];
-        $houseAmenities=explode(',',$houseInfo['amenities']);
+        $houseId=$houseInfo[0]['id'];
+        $houseCat=$houseInfo[0]['category'];
+        $houseLocation=$houseInfo[0]['location'];
+        $priceNum=$houseInfo[0]['fixed_price'];
+        $formatedPrice= currencyComma($priceNum);
+        $housePrice="{$houseInfo[0]['fixed_price_currency']}{$formatedPrice}";
+        $housePropType=$houseInfo[0]['propType'];
+        $housesize="{$houseInfo[0]['size_measurement']}{$houseInfo[0]['size_measure_unit']}";
+        $houseRoom=$houseInfo[0]['room'];
+        $houseBath=$houseInfo[0]['bath'];
+        $houseDesc=$houseInfo[0]['description'];
+        $onInstall=$houseInfo[0]['onInstalment'];
+        $houseAmenities=explode(',',$houseInfo[0]['amenities']);
        
         $postReqData=isset($_SESSION['requestData'])?$_SESSION['requestData']:[]; //data submited via request form stored in a session for
 
-
-        $instalmentPlan=$this->model->getInstalmentPlan($houseId);
-
-        $per=$instalmentPlan['per'];
-        $instalment=(int) $instalmentPlan['instalment'];
-        $minTimes=(int) $instalmentPlan['minPayTimes'];
-        $maxTimes=(int) $instalmentPlan['maxPayTimes'];
-        $InstalmentCurrency= $instalmentPlan['currency'];
+        if($onInstall==true){
+            $instalmentPlan=$this->model->getInstalmentPlan($houseId);
+            $per=$instalmentPlan['per'];
+            $instalment=(int) ceil(($priceNum*10/100))+($priceNum);
+            // $instalment=currencyComma($instalment);
+            // $instalment=(int) $instalmentPlan['instalment'];
+            $minTimes=(int) $instalmentPlan['minPayTimes'];
+            $maxTimes=(int) $instalmentPlan['maxPayTimes'];
+            $InstalmentCurrency= $instalmentPlan['currency'];
+        }
 
         //view
         $house=new houseInfoView;
