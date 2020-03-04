@@ -4,54 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/template/bs/bs.min.css">
-    <link rel="stylesheet" href="/template/fa/css/all.min.css">
-    <link rel="stylesheet" href="/template/mh/mh.css">
-    <link rel="stylesheet" href="/template/house-info.css">
-    <title>MainHouse-house information page</title>
+    <link rel="stylesheet" href="/template/styles/bs/bs.min.css">
+    <link rel="stylesheet" href="/template/styles/fa/css/all.min.css">
+    <link rel="stylesheet" href="/template/styles/animate.css">
+    <link rel="stylesheet" href="/template/styles/mh/mh.css">
+    <link rel="stylesheet" href="/template/styles/house-info.css">
+    <title>MainLandHouses-house information page</title>
 </head>
 <body>
     <div class="body-div">
         <section class="house-basic-info">
-
-
             <div class="house-wrp">
                 <div class="house">
                     <div class="house-img">
                         <div class="img-pc">
-                            <img src="/assets/images/Bitmap-3.jpg" class="img-fluid" alt="" intrinsicsize="1902px">
-
+                            <?php foreach ($slidePhotos as $key => $value): ?>
+                            <img data-index="<?php echo "{$key}" ?>" src="/assets/images/<?php echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid slide-fade" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
+                            <?php endforeach; ?>
                         </div>
                         <div class="img-overlay-wrp">
                             <div class="img-overlay">
-                                <p class="house-condition">distressed</p>
+                                <p class="house-condition"><?php echo $houseCat ?></p>
                                 <div class="slide-control-wrp">
                                     <div class="slide-control">
-                                        <a class="active" href="#Slide-pic-1"></a>
-                                        <a href="#Slide-pic-2"></a>
-                                        <a href="#Slide-pic-3"></a>
+                                    <?php foreach ($slidePhotos as $key => $value): ?>
+                                        <span class="dot" onclick="currentSlide(<?php echo $key+1 ?>)"></span>
+                                    <?php endforeach; ?>
                                     </div>
                                 </div>
                                 <div class="house-price" title="Price Tag">
-                                    NGN 1,200,000
+                                   <?php echo $housePrice ?>
                                 </div>
                                 <div class="request-btn">
-                                    <a href="#">
+                                    <a href="/house/request/<?php echo $houseId; ?>">
                                         <i class="fa fa-phone-volume fa-2x"></i>
-                                        <span>Request</span>
+                                        <span>WhatsApp</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="house-info">
-                        <div class="house-location">Port Harcourt</div>
-                        <h4 class="property-type">Semi-detached</h4>
+                        <div class="house-location"><?php echo $houseLocation; ?></div>
+                        <h4 class="property-type"><?php echo $housePropType; ?></h4>
                     </div>
                     <div class="house-desc">
-                        <div class="house-area"><span class="mh mh-measurement"></span> <span>12sqft</span></div>
-                        <div class="house-bath"><span class="mh mh-shower"></span> <span>2 baths</span> </div>
-                        <div class="house-bed"><span class="mh mh-bed"></span> <span>2 beds</span></div>
+                        <div class="house-area"><span class="mh mh-measurement"></span> <span><?php echo $housesize; ?></span></div>
+                        <div class="house-bath"><span class="mh mh-shower"></span> <span><?php echo $houseBath; ?> Bath(s)</span> </div>
+                        <div class="house-bed"><span class="mh mh-bed"></span> <span><?php echo $houseRoom; ?> Room(s)</span></div>
                     </div>
                     <hr class="house-hr">
                 </div>
@@ -65,97 +65,31 @@
                     <div class="house-desc-wrp">
                         <div class="house-desc">
                             <h6 class="house-desc-title"> House Description</h6>
-                            <p class="house-desc-para">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse consequatur quae porro
-                                velit molestiae tenetur laudantium hic a quas nisi, provident voluptates mollitia corrupti 
-                                fugit sunt consequatur...<a class="house-desc-link" href="#">Read&nbsp;More</a>
+                            <p class="house-desc-para"><?php echo $houseDesc; ?>
+                               <a class="house-desc-link" href="#">Read&nbsp;More</a>
                             </p>
                         </div>
                     </div>
                     <div class="house-amenity-wrp">
                         <div class="house-amenity">
-                            <h5 class="amenity-title"><span class="">Amenities</span> <a class="fa-pull-right" href="#moreAmenities">See all</a></h5>
+                            <h5 class="amenity-title"><span class="">Amenities</span> <a class="fa-pull-right see-more" href="#moreAmenities">See all</a></h5>
                             <div class="amenities-wrp">
-                                <div class="amenities">
+                                <div id="moreAmenities" class="amenities">
                                     <div class="container">
                                         <div class="row mt-4">
-                                            <div class=" col-md-3 col-sm-6 sm-half mb-3">
+                                            
+                                        <?php foreach ($houseAmenities as $key => $value): ?>
+                                            <div class=" col-md-3 col-sm-6 sm-half mb-3 animated fadeInDown <?php echo ($key>=$amentyShowMax)?"amenity-hide":""; ?>">
                                                 <div class="box-wrp">
                                                     <a href="#" class="box">
-                                                        <i class="fa fa-map-marker-alt map-icon fa-3x"></i>
-                                                        
-                                                        <p>Parking lot</p>
+                                                        <i class="<?php echo $allAmenities[$value]; ?> icon fa-3x"></i>
+                                                        <p><?php echo $value; ?></p>
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                                <div class="box-wrp">
-                                                    <a href="#"  class="box">
-                                                        <i class="fa fa-map-marker-alt map-icon fa-3x"></i>
-                                                        
-                                                        <p>Parking lot</p>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                                <div class="box-wrp">
-                                                    <a href="#"  class="box">
-                                                        <i class="fa fa-map-marker-alt map-icon fa-3x"></i>
-                                                        
-                                                        <p>Parking lot</p>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                                <div class="box-wrp">
-                                                    <a href="#"  class="box">
-                                                        <i class="fa fa-map-marker-alt map-icon fa-3x"></i>
-                                                        
-                                                        <p>Parking lot</p>
-                                                    </a>
-                                                </div>
-                                            </div>
+
+                                        <?php endforeach; ?>
                                         </div>
-                                        <!-- <div>remove d-none later as this will be toggled with js later on</div> -->
-                                            <div id="moreAmenities" class="row d-none">
-                                                <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                                    <div class="box-wrp">
-                                                        <a href="#"  class="box">
-                                                            <i class="fa fa-map-marker-alt map-icon fa-3x"></i>
-                                                            
-                                                            <p>Parking lot</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                                    <div class="box-wrp">
-                                                        <a href="#"  class="box">
-                                                            <i class="fa fa-map-marker-alt map-icon fa-3x"></i>
-                                                            
-                                                            <p>Parking lot</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                                    <div class="box-wrp">
-                                                        <a href="#"  class="box">
-                                                            <i class="fa fa-map-marker-alt map-icon fa-3x"></i>
-                                                            
-                                                            <p>Parking lot</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                                    <div class="box-wrp">
-                                                        <a href="#"  class="box">
-                                                            <i class="fa fa-map-marker-alt map-icon fa-3x"></i>
-                                                            
-                                                            <p>Parking lot</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -166,56 +100,21 @@
         <section class="house-photo-gallery">
             <div class="photo-gallery-wrp">
                 <div class="photo-gallery">
-                    <h5 class="photo-gallery-title"><span>More photos</span> <a class="fa-pull-right" href="#morePhotos">See all</a></h5>
+                    <h5 class="photo-gallery-title"><span>More photos</span> <a class="fa-pull-right see-more" href="#morePhotos">See all</a></h5>
                     <div class="house-photo-wrp">
-                        <div class="house-photo">
+                        <div id="morePhotos" class="house-photo">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class=" col-md-3 col-sm-6 sm-half mb-3">
+
+                                <?php foreach ($housephoto as $key => $value): ?>
+                                    <div class=" col-md-3 col-sm-6 sm-half mb-3 animated fadeInDown <?php echo ($key>=$photoShowMax)?"photo-hide":""; ?>">
                                         <div class="box-wrp">
-                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
+                                            <img src="/assets/images/<?php echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
                                         </div>
                                     </div>
-                                    <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                        <div class="box-wrp">
-                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
-                                        </div>
-                                    </div>
-                                    <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                        <div class="box-wrp">
-                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
-                                        </div>
-                                    </div>
-                                    <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                        <div class="box-wrp">
-                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
-                                        </div>
-                                    </div>
+
+                                <?php endforeach; ?>
                                 </div>
-                                <!-- <div>remove d-none later as this will be toggled with js later on</div> -->
-                                    <div id="morePhotos" class="row d-none">
-                                        <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                            <div class="box-wrp">
-                                                    <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                            <div class="box-wrp"> 
-                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                            <div class="box-wrp">
-                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt="">
-                                            </div>
-                                        </div>
-                                        <div class=" col-md-3 col-sm-6 sm-half mb-3">
-                                            <div class="box-wrp">
-                                                <img src="/assets/images/house-thumbnail.jpg" class="img-fluid" alt=""> 
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
                             </div> 
                         </div>
                     </div>
@@ -223,5 +122,116 @@
             </div>
         </section>
     </div>
+
+    <div id="modal-container" class="position-fixed w-100 h-100 <?php echo $request?"":"d-none" ?>">
+        <div class="modal-backdrop fade show"></div>
+        <!-- Modal 1 -->
+        <?php if(empty($postReqData) || $postReqData["valid"]===false): ?>
+<div id="modal-request" class="modal fade show animated fadeInDown" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered " role="document">
+  <form class="w-100" action="/house/requested" method="POST">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Place Your Request</h5>
+        <a href="/house/detail/<?php echo $houseId; ?>"  type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+      </div>
+      <div class="modal-body">
+          <div class="alert alert-danger">
+              This functionality is not available now, we are still in development.
+          </div>
+      <div class="form-group">
+    <label for="name">Name(Required)</label>
+    <div class="input-group mb-2">
+    <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fa fa-user-alt"></i></div>
+        </div>
+    <input type="text" class="form-control" id="name" name="fullName" placeholder="Fullname" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email address(Required)</label>
+    <div class="input-group mb-2">
+    <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+        </div>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email Address" required>
+    </div>
+    <small id="emailHelp pl-2" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-row">
+      <div class="col-2">
+      <label for="pay">Pay</label>
+      </div>
+    <div class="col-10 instalment_plan">
+    <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="pay" id="full-payment" value="full">
+  <label class="form-check-label" for="full-payment">Full Payment(<?php echo "$housePrice" ?>)</label>
+</div>  
+
+    <div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="pay" id="instalment" value="instalment" checked>
+  <label class="form-check-label" for="instalment">Instalment (<?php echo $InstalmentCurrency; ?><span id="instalment_price_show"><?php echo "$instalment" ?></span>)</label>
+</div>     
+</div>
+    <div id="instalment-plan" class="col-8 offset-2 animated fadeIn">
+    <div class="form-group">
+    <input type="hidden" id="Instalment_per"  name="instalment_per" value="<?php echo $per; ?>">
+          <input id="Instalment_price" type="hidden" name="instalment_price" value="<?php echo $instalment; ?>">
+        <input type="range" list="tickmarks" step="1" min="<?php echo $minTimes ?>" max="<?php echo $maxTimes; ?>" class="form-control-range custom-range" id="instalment_duration" name="instalment_duration">
+        <label for="instalment_duration" class="border-info"> <?php echo $InstalmentCurrency?><span id="instal_dur_value"><?php echo ceil(($instalment)/($minTimes)); echo "/$per"; ?> in <?php echo $minTimes; ?></span> <?php echo $per; ?>(s)</label>
+    <datalist id="tickmarks">
+    <?php for ($i=$minTimes; $i <=$maxTimes ; $i++):?>
+        <option value="<?php echo $i ?>">
+    <?php endfor; ?>
+    </datalist>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+    <label for="exampleInputEmail1">Personal Note(optional)</label>
+    <div class="input-group mb-2">
+    <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fa fa-edit"></i></div>
+        </div>
+    <textarea  name="personal_Note" class="form-control" id="p-note" aria-describedby="personalNoteHelp" rows="3"></textarea>
+    </div>
+    <small id="p-noteHelp" class="form-text text-muted pl-2">Anything you want us to know?</small>
+  </div>
+      <div class="modal-footer">
+          <input type="hidden" name="house_id" value="<?php echo $houseId; ?>">
+        <button class="btn btn-request">Request</button>
+      </div>
+    </div>
+
+    </form>
+  </div>
+  </div>
+
+    <?php endif; ?>
+        <?php if(isset($postReqData['valid']) && $postReqData['valid']===true): ?>
+          <!-- Modal 2 -->
+<div id="modal-request-successful" class="modal fade show animated fadeInDown" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Request placed successfully</h5>
+          <a href="/house/detail/<?php echo $houseId; ?>" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </a>
+        </div>
+        <div class="modal-body">
+  thank you for making request
+        <div class="modal-footer">
+          <a href="/house/detail/<?php echo $houseId ?>" type="button" class="btn btn-primary">Done</a>
+        </div>
+      </div>
+    </div>
+    </div>
+ </div>
+    <?php endif; ?>
+    <script src="/script/slide.js"></script>
 </body>
 </html>
