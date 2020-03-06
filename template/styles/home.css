@@ -235,6 +235,7 @@ border-radius: 100px;
     margin-bottom: 20px;
 }
 
+
 .dest-content-text p::after{
     content: " ";
     height: 3px;
