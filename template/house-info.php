@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="house-info">
-                        <div class="house-location"><?php echo $houseLocation; ?></div>
+                        <div class="house-location"><?php echo $houseAddr; //$houseLocation; ?></div>
                         <h4 class="property-type"><?php echo $housePropType; ?></h4>
                     </div>
                     <div class="house-desc">
@@ -235,7 +235,9 @@
           </a>
         </div>
         <div class="modal-body">
-  thank you for making request
+  <pre>
+      <?php var_dump($postReqData) ?>
+  </pre>
         <div class="modal-footer">
           <a href="/house/detail/<?php echo $houseId ?>" type="button" class="btn btn-primary">Done</a>
         </div>
