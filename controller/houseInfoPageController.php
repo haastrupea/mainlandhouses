@@ -10,6 +10,10 @@ class houseInfoPageController{
         $amentyShowMax=4;//show 4 amenities from the gallery and hide the rest
         
         $houseInfo=$this->model->getHouseInfoById($id);
+        if(empty($houseInfo)){
+            header("Location: /home");
+            exit();
+        }
         $housephoto=$this->model->getphotogallery($id);
         $photoShowMax=4;//show 4 pictures from the gallery and hide the rest
 
@@ -29,19 +33,20 @@ class houseInfoPageController{
         }// select front,palour and kitchen view from all the pictures in the gallery
 
         //load all house info into variables
-        $houseId=$houseInfo[0]['id'];
-        $houseCat=$houseInfo[0]['category'];
-        $houseLocation=$houseInfo[0]['location'];
-        $priceNum=$houseInfo[0]['fixed_price'];
+        $houseId=$houseInfo['id'];
+        $houseCat=$houseInfo['category'];
+        $houseLocation=$houseInfo['location'];
+        $houseAddr=$houseInfo['address'];
+        $priceNum=$houseInfo['fixed_price'];
         $formatedPrice= currencyComma($priceNum);
-        $housePrice="{$houseInfo[0]['fixed_price_currency']}{$formatedPrice}";
-        $housePropType=$houseInfo[0]['propType'];
-        $housesize="{$houseInfo[0]['size_measurement']}{$houseInfo[0]['size_measure_unit']}";
-        $houseRoom=$houseInfo[0]['room'];
-        $houseBath=$houseInfo[0]['bath'];
-        $houseDesc=$houseInfo[0]['description'];
-        $onInstall=$houseInfo[0]['onInstalment'];
-        $houseAmenities=explode(',',$houseInfo[0]['amenities']);
+        $housePrice="{$houseInfo['fixed_price_currency']}{$formatedPrice}";
+        $housePropType=$houseInfo['propType'];
+        $housesize="{$houseInfo['size_measurement']}{$houseInfo['size_measure_unit']}";
+        $houseRoom=$houseInfo['room'];
+        $houseBath=$houseInfo['bath'];
+        $houseDesc=$houseInfo['description'];
+        $onInstall=$houseInfo['onInstalment'];
+        $houseAmenities=explode(',',$houseInfo['amenities']);
        
         $postReqData=isset($_SESSION['requestData'])?$_SESSION['requestData']:[]; //data submited via request form stored in a session for
 
@@ -70,6 +75,8 @@ class houseInfoPageController{
 
         if($validated['valid']){
             //save all the request data in the database
+            $houseRealId=$this->model->gethouseRealId($house_id);
+
             //send a copy of the data to email to admin
             //send a copy of the data to email to user email
 
@@ -91,6 +98,7 @@ class houseInfoPageController{
         $request=true;
         $this->detail($house_id,$request);
     }
+
     public function run($action,$param)
     {
         $this->model=new housedataModel;
