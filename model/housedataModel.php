@@ -61,7 +61,7 @@ class housedataModel{
         $price =strtolower($price);
         $location=strtolower($location);
 
-        $sql="SELECT id,area_located as location, houseCategory as type, category, fixed_price_currency,fixed_price,propType,size_measure_unit,size_measurement,room,bath FROM Houses";
+        $sql="SELECT SUBSTRING(SHA2(CONCAT(id,address),0),50,60) as id,area_located as location, houseCategory as type, category, fixed_price_currency,fixed_price,propType,size_measure_unit,size_measurement,room,bath FROM Houses";
         $sql.=($price!="any" || $location!="any" || $propType!="any")?" where":"";
 
         $result=[];
@@ -122,10 +122,16 @@ class housedataModel{
     public function getHouseInfoById($id)
     {
         //search db for house info and gallery
-        $sql="SELECT id,area_located as location,onInstalment, houseCategory as type, category, fixed_price_currency,fixed_price,propType,size_measure_unit,size_measurement,room,bath,description,amenities FROM Houses where CAST(id as UNSIGNED)=?";
+        $sql="SELECT SUBSTRING(SHA2(CONCAT(id,address),0),50,60) as id,area_located as location,address,onInstalment, houseCategory as type, category, fixed_price_currency,fixed_price,propType,size_measure_unit,size_measurement,room,bath,description,amenities FROM Houses where SUBSTRING(SHA2(CONCAT(id,address),0),50,60)=?";
         $house=$this->dbCon->crudQuery($sql,[$id]);
-        
-        return $house;   
+        return $house[0];   
+    }
+
+    public function gethouseRealId($hashId){
+         //search db for house info and gallery
+         $sql="SELECT id FROM Houses where SUBSTRING(SHA2(CONCAT(id,address),0),50,60)=?";
+         $houserealId=$this->dbCon->crudQuery($sql,[$hashId]);
+         return $houserealId[0]['id'];   
     }
 
     public function getphotogallery($house_id){
