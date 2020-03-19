@@ -150,10 +150,9 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 sm-half mb-5">
                         <div class="box-wrp">
                             <a href="/house-search/location/<?php echo $value['location']; ?>" class="box">
-                            <!-- <a href="/search/<?php //echo $value['location']; ?>" class="box"> -->
                                 <i class="fa fa-map-marker-alt map-icon"></i>
                                 <h6 class="dest-place"><?php echo $value['location']; ?></h6>
-                                <p><span><?php echo $value['totalNumber']; ?></span> <?php echo rtrim($value['type']); ?>(es) </p>
+                                <p><span><?php //echo $value['totalNumber']; ?></span> <?php echo rtrim($value['type']); ?> </p>
                             </a>
                         </div>
                     </div>

@@ -82,7 +82,13 @@ function curencyComma(x){
     parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");
     return parts.join(".")
 }
+
+
 let range=document.getElementById('instalment_duration');
+
+if
+(range!=null){
+    
 let instalmentPer=document.getElementById('Instalment_per').value;
 let instalmentPrice=document.getElementById('Instalment_price').value;
     
@@ -114,3 +120,5 @@ let radio=document.querySelectorAll('.instalment_plan input');
             }
         });
     });
+
+}

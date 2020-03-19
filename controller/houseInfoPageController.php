@@ -10,6 +10,10 @@ class houseInfoPageController{
         $amentyShowMax=4;//show 4 amenities from the gallery and hide the rest
         
         $houseInfo=$this->model->getHouseInfoById($id);
+        if(empty($houseInfo)){
+            header("Location: /home");
+            exit();
+        }
         $housephoto=$this->model->getphotogallery($id);
         $photoShowMax=4;//show 4 pictures from the gallery and hide the rest
 
@@ -28,29 +32,61 @@ class houseInfoPageController{
             }
         }// select front,palour and kitchen view from all the pictures in the gallery
 
-
         //load all house info into variables
         $houseId=$houseInfo['id'];
         $houseCat=$houseInfo['category'];
         $houseLocation=$houseInfo['location'];
-        $housePrice="{$houseInfo['fixed_price_currency']}{$houseInfo['fixed_price']}";
+        $houseAddr=$houseInfo['address'];
+        $priceNum=$houseInfo['fixed_price'];
+        $formatedPrice= currencyComma($priceNum);
+        $housePrice="{$houseInfo['fixed_price_currency']}{$formatedPrice}";
         $housePropType=$houseInfo['propType'];
         $housesize="{$houseInfo['size_measurement']}{$houseInfo['size_measure_unit']}";
         $houseRoom=$houseInfo['room'];
         $houseBath=$houseInfo['bath'];
         $houseDesc=$houseInfo['description'];
+        $onInstall=$houseInfo['onInstalment'];
         $houseAmenities=explode(',',$houseInfo['amenities']);
        
         $postReqData=isset($_SESSION['requestData'])?$_SESSION['requestData']:[]; //data submited via request form stored in a session for
+        $fullName="";
+        $email="";
+        $pNote="";
+        $error=[];
+        if(!empty($postReqData)){
+            $fullName=$postReqData['data']['fullName'];
+            $email=$postReqData['data']['email'];
+            $pNote=$postReqData['data']['personal_Note'];
+        }
+
+        if(isset($postReqData['error'] )){
+            $error=$postReqData['error'];
+
+            if(isset($error['house_id'])){
+                //someon is trying to edit the value of id given
+                header("Location: /home");
+                exit();
+            }
+
+            if(isset($error['pay'])){
+                //someon is trying to edit the payment plan
+                header("Location: /home");
+                exit();
+            }
+        }
 
 
-        $instalmentPlan=$this->model->getInstalmentPlan($houseId);
 
-        $per=$instalmentPlan['per'];
-        $instalment=(int) $instalmentPlan['instalment'];
-        $minTimes=(int) $instalmentPlan['minPayTimes'];
-        $maxTimes=(int) $instalmentPlan['maxPayTimes'];
-        $InstalmentCurrency= $instalmentPlan['currency'];
+        unset($_SESSION['requestData']);
+        if($onInstall==true){
+            $instalmentPlan=$this->model->getInstalmentPlan($houseId);
+            $per=$instalmentPlan['per'];
+            $instalment=(int) ceil(($priceNum*10/100))+($priceNum);
+            
+            $minTimes=(int) $instalmentPlan['minPayTimes'];
+            $maxTimes=(int) $instalmentPlan['maxPayTimes'];
+            $InstalmentCurrency= $instalmentPlan['currency'];
+        }
 
         //view
         $house=new houseInfoView;
@@ -58,6 +94,9 @@ class houseInfoPageController{
         include_once $house->run();
 
     }
+    /**
+     * @todo: uncommment code that add the code to db
+     */
     private function requested($formData)
     {
         $house_id=$formData['house_id'];
@@ -66,16 +105,16 @@ class houseInfoPageController{
 
         if($validated['valid']){
             //save all the request data in the database
+            // $this->model->placeRequest($validated['data']);
+        
             //send a copy of the data to email to admin
+            $this->model->sendRequestCopyToAdmin($validated['data']);
+            
             //send a copy of the data to email to user email
+            $this->model->sendRequestCopyToUser($validated['data']);
 
-            //setup a session with the data given
-        //house_id,instalment duration,full name,instalment per month,installment_time
-        $instalment_dur="";
-        $fullName="";
-        $InstmentToPay="";
-        $InstmentTime="";
         }
+        //setup a session with the data given
         $_SESSION['requestData']=$validated;
 
         header("Location: /house/request/$house_id");
@@ -87,6 +126,7 @@ class houseInfoPageController{
         $request=true;
         $this->detail($house_id,$request);
     }
+
     public function run($action,$param)
     {
         $this->model=new housedataModel;

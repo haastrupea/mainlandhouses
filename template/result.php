@@ -96,7 +96,17 @@
                          </div>
 
                          <?php endforeach; ?>
-
+                         <?php if(empty($result)): ?>
+                        <div class="col-12 mb-5">
+                        <div class="not-found d-flex align-items-center justify-content-center flex-column">
+                        <i class="fa fa-stack fa-5x">
+                        <i class="fa fa-home fa-stack-2x text-white"></i>
+                        <i class="fa fa-search fa-stack-1x animated infinit lookup"></i>
+                        </i>
+                        <h2 class="my-2">No result found</h2>
+                        </div>
+                        </div>
+                         <?php endif; ?>
                         
                      </div>
                  </div>
