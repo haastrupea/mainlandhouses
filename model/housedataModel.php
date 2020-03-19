@@ -232,6 +232,11 @@ class housedataModel{
 
         return $house; 
     }
+
+    public function getHouseAgentData($agent_id){
+
+        return ["phoneNo"=>'2348150220461'];
+    }
 }
 
 

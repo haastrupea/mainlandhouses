@@ -33,7 +33,8 @@
         <div class="modal-body">
             <div class="alert alert-danger">
                 Thank you for your support we have added 71 of houses to database, feel free to browse them.
-                Note that none of the pictures are real but every other infos are, New Updates will come in 24hours time
+                you can now Place your request on the listed houses
+                <span class="text-info">Note: that none of the pictures are real</span> but every other infos are, New Updates will come in 24hours time
             </div>
             <div class="alert alert-danger">
                 We will let you know when we are done adding all our houses to database

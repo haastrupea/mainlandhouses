@@ -47,7 +47,14 @@ class houseInfoPageController{
         $houseDesc=$houseInfo['description'];
         $onInstall=$houseInfo['onInstalment'];
         $houseAmenities=explode(',',$houseInfo['amenities']);
-       
+
+        //agent_info
+        $house_agent_id='1';
+        $agentinfo=$this->model->getHouseAgentData($house_agent_id);
+        $agentPhone=$agentinfo['phoneNo'];
+
+
+
         $postReqData=isset($_SESSION['requestData'])?$_SESSION['requestData']:[]; //data submited via request form stored in a session for
         $fullName="";
         $email="";
@@ -59,6 +66,10 @@ class houseInfoPageController{
             $pNote=$postReqData['data']['personal_Note'];
         }
 
+        $WhatasappMsg="Hi, my name is $fullName, i am interested in the house at $houseAddr";
+        $requestWhatasappText=rawurlencode($WhatasappMsg);
+
+        $WhatasappMsgLink="https://api.whatsapp.com/send?phone=$agentPhone&text=$requestWhatasappText";
         if(isset($postReqData['error'] )){
             $error=$postReqData['error'];
 

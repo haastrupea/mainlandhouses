@@ -242,7 +242,7 @@
         <div class="modal-body">
         <h1 class="text-center text-success"><i class="fa fa-check-double animated pulse infinite"></i></h1>
         <h5 class="text-center animated fadeIn">Thank you, your request has been received</h5>
-        <h1 class="text-center mt-4 animated"><a href="#" class="btn btn-outline-success"><i class="fab fa-whatsapp fa-2x"> Chat with Us</i></a> </h1>
+        <h1 class="text-center mt-4 animated"><a href="<?php echo $WhatasappMsgLink; ?>" class="btn btn-outline-success"><i class="fab fa-whatsapp fa-2x"> Chat with Us</i></a> </h1>
         <h6 class="text-center mt-2 animated fadeIn">To discuss scheduling an inspection of the house</h6>
   <!-- <pre>
       <?php //var_dump($postReqData) ?>
