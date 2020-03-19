@@ -140,16 +140,21 @@
         </a>
       </div>
       <div class="modal-body">
+          <?php if(!empty($postReqData['error'])): ?>
           <div class="alert alert-danger">
-              This functionality is not available now, we are still in development.
-          </div>
+              <!-- This functionality is not available now, we are still in development. -->
+              <?php foreach ($postReqData['error'] as $key => $value): ?>
+                <p class="mb-0"><?php echo $value ?></p>
+              <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
       <div class="form-group">
     <label for="name">Name(Required)</label>
     <div class="input-group mb-2">
     <div class="input-group-prepend">
           <div class="input-group-text"><i class="fa fa-user-alt"></i></div>
         </div>
-    <input type="text" class="form-control" id="name" name="fullName" placeholder="Fullname" required>
+    <input type="text" class="form-control <?php echo isset($error['fullName'])?"border-danger":"" ?>" id="name" name="fullName" placeholder="Fullname" value="<?php echo $fullName ?>" required>
     </div>
   </div>
   <div class="form-group">
@@ -158,7 +163,7 @@
     <div class="input-group-prepend">
           <div class="input-group-text"><i class="fa fa-envelope"></i></div>
         </div>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email Address" required>
+    <input type="email" inputmode="email" class="form-control <?php echo isset($error['email'])?"border-danger":"" ?>" name="email" id="email" value="<?php echo $email; ?>" aria-describedby="emailHelp" placeholder="Email Address" required>
     </div>
     <small id="emailHelp pl-2" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
@@ -173,7 +178,7 @@
 </div>  
 <?php if($onInstall==true): ?>
     <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="pay" id="instalment" value="instalment">
+  <input class="form-check-input" type="radio" name="pay" id="instalment" value="installment">
   <label class="form-check-label" for="instalment">Instalment (<?php echo $InstalmentCurrency; ?><span id="instalment_price_show"><?php echo "$instalment" ?></span>)</label>
 </div>
 <?php else: ?>
@@ -187,7 +192,7 @@
     <div class="form-group">
     <input type="hidden" id="Instalment_per"  name="instalment_per" value="<?php echo $per; ?>">
           <input id="Instalment_price" type="hidden" name="instalment_price" value="<?php echo $instalment; ?>">
-        <input type="range" list="tickmarks" step="1" min="<?php echo $minTimes ?>" max="<?php echo $maxTimes; ?>" class="form-control-range custom-range" id="instalment_duration" name="instalment_duration">
+        <input type="range" list="tickmarks" step="1" min="<?php echo $minTimes ?>" max="<?php echo $maxTimes; ?>" class="form-control-range custom-range" id="instalment_duration" name="installment_duration">
         <label for="instalment_duration" class="border-info"> <?php echo $InstalmentCurrency?><span id="instal_dur_value"><?php echo ceil(($instalment)/($minTimes)); echo "/$per"; ?> in <?php echo $minTimes; ?></span> <?php echo $per; ?>(s)</label>
     <datalist id="tickmarks">
     <?php for ($i=$minTimes; $i <=$maxTimes ; $i++):?>
@@ -207,7 +212,7 @@
     <div class="input-group-prepend">
           <div class="input-group-text"><i class="fa fa-edit"></i></div>
         </div>
-    <textarea  name="personal_Note" class="form-control" id="p-note" aria-describedby="personalNoteHelp" rows="3"></textarea>
+    <textarea  name="personal_Note" class="form-control" id="p-note" aria-describedby="personalNoteHelp" rows="3"><?php echo $pNote ?></textarea>
     </div>
     <small id="p-noteHelp" class="form-text text-muted pl-2">Anything you want us to know?</small>
   </div>
@@ -228,18 +233,22 @@
   
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content border-success">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Request placed successfully</h5>
+        <div class="modal-header bg-success">
+          <h3 class="modal-title text-white" id="exampleModalLabel">Request placed successfully</h3>
           <a href="/house/detail/<?php echo $houseId; ?>" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </a>
         </div>
         <div class="modal-body">
-  <pre>
-      <?php var_dump($postReqData) ?>
-  </pre>
-        <div class="modal-footer">
-          <a href="/house/detail/<?php echo $houseId ?>" type="button" class="btn btn-primary">Done</a>
+        <h1 class="text-center text-success"><i class="fa fa-check-double animated pulse infinite"></i></h1>
+        <h5 class="text-center animated fadeIn">Thank you, your request has been received</h5>
+        <h1 class="text-center mt-4 animated"><a href="#" class="btn btn-outline-success"><i class="fab fa-whatsapp fa-2x"> Chat with Us</i></a> </h1>
+        <h6 class="text-center mt-2 animated fadeIn">To discuss scheduling an inspection of the house</h6>
+  <!-- <pre>
+      <?php //var_dump($postReqData) ?>
+  </pre> -->
+        <div class="modal-footer pb-1">
+          <a href="/house/detail/<?php echo $houseId ?>" type="button" class="btn btn-light btn-outline-success px-4">Done</a>
         </div>
       </div>
     </div>
