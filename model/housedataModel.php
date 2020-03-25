@@ -2,7 +2,6 @@
 class housedataModel{
     protected $dbCon;
 
-    
     public function __construct()
     {
         global $config;
@@ -211,6 +210,8 @@ class housedataModel{
     }
 
     public function getphotogallery($house_id){
+        //get the real id of the house
+        //get all the house pictures
         $house=[
             ['description'=>"Close up view",'view'=>'front','ext'=>"jpg",'photo_id'=>1],
             ['description'=>"Close up view",'view'=>'back','ext'=>"jpg",'photo_id'=>2],
