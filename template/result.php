@@ -79,7 +79,6 @@
                                         $photoDir=$config['housePictureDir']['unCategorisedPictures'];
                                     }
                                     ?>
-                                         <!-- <img src="/assets/images/house_01_01_front_view.jpg" class="img-fluid" alt=""> -->
                                          <img src="<?php echo $photoDir.$previewPhoto['image']; ?>" class="img-fluid slide-fade" alt="<?php echo $previewPhoto['view']; ?> view" title="<?php echo $previewPhoto['description'] ?>">
 
                                          <div class="img-overlay-wrp">
