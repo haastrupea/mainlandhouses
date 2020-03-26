@@ -139,13 +139,11 @@ class housedataModel{
         $price =strtolower($price);
         $location=strtolower($location);
 
-        $sql="SELECT SUBSTRING(SHA2(CONCAT(id,address),0),50,60) as id,area_located as location, houseCategory as type, category, fixed_price_currency,fixed_price,propType,size_measure_unit,size_measurement,room,bath FROM Houses where status='listed' and";
+        $sql="SELECT SUBSTRING(SHA2(CONCAT(id,address),0),50,60) as id,area_located as location, houseCategory as type, category, fixed_price_currency,fixed_price,propType,size_measure_unit,size_measurement,room,bath FROM Houses where status='listed'";
         $result=[];
 
         if($location!=="any" && !empty($location)){
-            if(!empty($col_values)){
                 $sql.=" And ";
-            }
 
             $sql .= " area_located = :loc";
             array_push($col_values, $location);
@@ -153,18 +151,16 @@ class housedataModel{
         }
 
         if($propType!=="any" && !empty($propType)){
-            if(!empty($col_values)){
                 $sql.=" And ";
-            }
+
             $sql .= " propType = :prop";
             array_push($col_values, $propType);
             array_push($col_placeholder, ':prop');
         }
 
         if($price!=="any" && !empty($price)){
-            if(!empty($col_values)){
                 $sql.=" And ";
-            }
+
             $split=explode("-",$price);
             $lower=(int) $split[0];
             $upper=(int) $split[1];
@@ -209,20 +205,39 @@ class housedataModel{
          return $houserealId[0]['id'];   
     }
 
+    public function getPreviewPhoto($house_id){
+            //get the real id of the house
+            $real_id=$this->gethouseRealId($house_id);
+            //get all the house pictures
+            $sql="SELECT view,description,ext,image FROM House_photo_gallery where house_id=:hs_id LIMIT 1";
+            $house=$this->dbCon->crudQuery($sql,[':hs_id'=>$real_id]);
+            if(empty($house)){
+                $house=[
+                    ['description'=>"Close up view",'view'=>'front','ext'=>"jpg",'photo_id'=>1,'image'=>'house_dummy_1.jpg']    
+                ];
+            }
+    
+            return $house[0];
+    }
     public function getphotogallery($house_id){
         //get the real id of the house
+        $real_id=$this->gethouseRealId($house_id);
         //get all the house pictures
-        $house=[
-            ['description'=>"Close up view",'view'=>'front','ext'=>"jpg",'photo_id'=>1],
-            ['description'=>"Close up view",'view'=>'back','ext'=>"jpg",'photo_id'=>2],
-            ['description'=>"Close up view",'view'=>'bath','ext'=>"jpg",'photo_id'=>3],
-            ['description'=>"Close up view",'view'=>'dinning','ext'=>"jpg",'photo_id'=>4],
-            ['description'=>"Close up view",'view'=>'right','ext'=>"jpg",'photo_id'=>5],
-            ['description'=>"Close up view",'view'=>'left','ext'=>"jpg",'photo_id'=>6],
-            ['description'=>"Close up view",'view'=>'kitchen','ext'=>"jpg",'photo_id'=>7],
-            ['description'=>"Close up view",'view'=>'bed','ext'=>"jpg",'photo_id'=>8],  
-            ['description'=>"Close up view",'view'=>'palour','ext'=>"jpg",'photo_id'=>9]    
-        ];
+        $sql="SELECT view,description,ext,image FROM House_photo_gallery where house_id=:hs_id";
+        $house=$this->dbCon->crudQuery($sql,[':hs_id'=>$real_id]);
+        if(empty($house)){
+            $house=[
+                ['description'=>"Close up view",'view'=>'front','ext'=>"jpg",'photo_id'=>1,'image'=>'house_dummy_1.jpg'],
+                ['description'=>"Close up view",'view'=>'back','ext'=>"jpg",'photo_id'=>2,'image'=>'house_dummy_2.jpg'],
+                ['description'=>"Close up view",'view'=>'bath','ext'=>"jpg",'photo_id'=>3,'image'=>'house_dummy_3.jpg'],
+                ['description'=>"Close up view",'view'=>'dinning','ext'=>"jpg",'photo_id'=>4,'image'=>'house_dummy_4.jpg'],
+                ['description'=>"Close up view",'view'=>'right','ext'=>"jpg",'photo_id'=>5,'image'=>'house_dummy_5.jpg'],
+                ['description'=>"Close up view",'view'=>'left','ext'=>"jpg",'photo_id'=>6,'image'=>'house_dummy_6.jpg'],
+                ['description'=>"Close up view",'view'=>'kitchen','ext'=>"jpg",'photo_id'=>7,'image'=>'house_dummy_7.jpg'],
+                ['description'=>"Close up view",'view'=>'bed','ext'=>"jpg",'photo_id'=>8,'image'=>'house_dummy_8.jpg'],  
+                ['description'=>"Close up view",'view'=>'palour','ext'=>"jpg",'photo_id'=>9,'image'=>'house_dummy_9.jpg']    
+            ];
+        }
 
         return $house;
     }

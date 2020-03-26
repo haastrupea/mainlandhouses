@@ -71,13 +71,24 @@
                              <div class="house-wrp">
                                  <a href="/house/detail/<?php echo $value['id']; ?>" class="house">
                                      <div class="house-img">
-                                         <img src="/assets/images/house_01_01_front_view.jpg" class="img-fluid" alt="">
+                                    <?php 
+                                    $previewPhoto=$this->model->getPreviewPhoto($value['id']);
+                                    $photoDir=$config['housePictureDir']['categorisedPictures'];
+
+                                    if(empty($previewPhoto['view'])){
+                                        $photoDir=$config['housePictureDir']['unCategorisedPictures'];
+                                    }
+                                    ?>
+                                         <!-- <img src="/assets/images/house_01_01_front_view.jpg" class="img-fluid" alt=""> -->
+                                         <img src="<?php echo $photoDir.$previewPhoto['image']; ?>" class="img-fluid slide-fade" alt="<?php echo $previewPhoto['view']; ?> view" title="<?php echo $previewPhoto['description'] ?>">
+
                                          <div class="img-overlay-wrp">
                                              <div class="img-overlay">
                                                  <p class="house-condition"><?php echo $value["category"]; ?></p>
                                                  <div class="house-price" title="Fixed price">
                                                  <?php $p=currencyComma($value["fixed_price"]); ?>
                                                  <?php echo $value["fixed_price_currency"]; echo $p; ?>
+                                                 <i class="fa fa-tags"></i>
                                                  </div>
                                              </div>
                                          </div>

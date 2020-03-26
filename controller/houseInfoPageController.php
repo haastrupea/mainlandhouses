@@ -3,6 +3,7 @@ class houseInfoPageController{
     private $model;
     private function detail($id,$request=false)
     {
+        global $config;
         if($request===false){
             unset($_SESSION['requestData']);
        }//reset back to default
@@ -16,19 +17,29 @@ class houseInfoPageController{
         }
         $housephoto=$this->model->getphotogallery($id);
         $photoShowMax=4;//show 4 pictures from the gallery and hide the rest
-
-        
+        $photoGallery=[];
+        $photoDir=$config['housePictureDir']['categorisedPictures'];
         //build up  slide images
         $slidePhotos=[];
+        
         foreach ($housephoto as $key => $value) {
-            if($value['view']=='front'){
-                array_push($slidePhotos,$value);
-            }
-           if($value['view']=='palour'){
-                array_push($slidePhotos,$value);
-            }
-            if($value['view']=='kitchen'){
-                array_push($slidePhotos,$value);
+            array_push($photoGallery,$value);//buid up the gallery picture array
+            if($value["view"]!=null){
+
+                if($value['view']=='front'){
+                    array_push($slidePhotos,$value);
+                }
+               if($value['view']=='palour'){
+                    array_push($slidePhotos,$value);
+                }
+                if($value['view']=='kitchen'){
+                    array_push($slidePhotos,$value);
+                }
+            }else{
+                $photoDir=$config['housePictureDir']['unCategorisedPictures'];
+                if(count($slidePhotos)<3){
+                    array_push($slidePhotos,$value);
+                }
             }
         }// select front,palour and kitchen view from all the pictures in the gallery
 
@@ -49,10 +60,10 @@ class houseInfoPageController{
         $houseAmenities=explode(',',$houseInfo['amenities']);
 
         //agent_info
+        //TODO: i will be replacing the agent id with valus from database
         $house_agent_id='1';
         $agentinfo=$this->model->getHouseAgentData($house_agent_id);
         $agentPhone=$agentinfo['phoneNo'];
-
 
 
         $postReqData=isset($_SESSION['requestData'])?$_SESSION['requestData']:[]; //data submited via request form stored in a session for

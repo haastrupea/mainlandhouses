@@ -43,12 +43,18 @@
     margin-bottom: 10px;
     font-weight: 400;
     transition: transform .3s ease;
+    cursor: pointer;
 }
 
 .img-overlay .house-price:hover{
- transform: scale(1.2);
- cursor: pointer;
+ transform: scale(1.1);
 }
+
+.img-overlay .house-price .fa{
+
+  font-size: .7em;
+  }
+
 .img-overlay .slide-control-wrp{
     position: absolute;
     bottom: 0;
@@ -111,7 +117,7 @@
 .house-desc div{
   min-width: 30%;
   text-align: center;
-  font-size: .7em;
+  font-size: 1em;
 }
 
 .request-btn{
@@ -148,9 +154,9 @@
 }
 
 
-.request-btn a span{
+/* .request-btn a span{
   font-size: .8em;
-  }
+  } */
 
   .request-btn a i{
     transform: rotate(-20deg);
@@ -189,7 +195,6 @@
   color:#b78727;
   border-radius: 15px;
   padding: 15px 0;
-  
   transition: all .5s ease;
   background-color: white;
   text-transform: capitalize;
@@ -222,6 +227,19 @@
   margin: 0;
   padding: 15px 10px;
 }
+
+.photo-gallery .box-wrp{
+  cursor: pointer;
+  overflow: hidden;
+  max-height: 245px;
+}
+.photo-gallery .box-wrp img{
+  transition: transform .5s ease;
+}
+.photo-gallery .box-wrp img:hover{
+  transform: scale(1.1);
+}
+
 .house-photo{
   padding-right: 15px;
 }
@@ -265,6 +283,11 @@
   .house-desc-para{
     font-size: .9em;
   }
+
+  .house-desc div{
+    font-size: .7em;
+  }
+
   .sm-half{
       width: 50% !important;
   }

@@ -19,7 +19,7 @@
                     <div class="house-img">
                         <div class="img-pc">
                             <?php foreach ($slidePhotos as $key => $value): ?>
-                            <img data-index="<?php echo "{$key}" ?>" src="/assets/images/<?php echo "house_01_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid slide-fade" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
+                            <img data-index="<?php echo "{$key}" ?>" src="<?php echo $photoDir.$value['image']; ?>" class="img-fluid slide-fade" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
                             <!-- <img data-index="<?php echo "{$key}" ?>" src="/assets/images/<?php //echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid slide-fade" alt="<?php //echo $value['view']; ?> view" title="<?php //echo $value['description'] ?>"> -->
                             <?php endforeach; ?>
                         </div>
@@ -35,11 +35,12 @@
                                 </div>
                                 <div class="house-price" title="Price Tag">
                                    <?php echo $housePrice ?>
+                                   <i class="fa fa-tags"></i>
                                 </div>
                                 <div class="request-btn">
                                     <a href="/house/request/<?php echo $houseId; ?>">
-                                        <i class="fa fa-phone-volume fa-2x"></i>
-                                        <span>WhatsApp</span>
+                                        <i class="fa fa-phone fa-2x"></i>
+                                        <span>Agent</span>
                                     </a>
                                 </div>
                             </div>
@@ -110,7 +111,7 @@
                                 <?php foreach ($housephoto as $key => $value): ?>
                                     <div class=" col-md-3 col-sm-6 sm-half mb-3 animated fadeInDown <?php echo ($key>=$photoShowMax)?"photo-hide":""; ?>">
                                         <div class="box-wrp">
-                                            <img src="/assets/images/<?php echo "house_01_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
+                                        <img data-index="<?php echo "{$key}" ?>" src="<?php echo $photoDir.$value['image']; ?>" class="img-fluid slide-fade" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
                                             <!-- <img src="/assets/images/<?php //echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid" alt="<?php //echo $value['view']; ?> view" title="<?php //echo $value['description'] ?>"> -->
                                         </div>
                                     </div>

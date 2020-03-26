@@ -44,6 +44,8 @@ label{
 
 .house .house-img{
     position: relative;
+    max-height: 200px;
+    overflow-y: hidden;
 }
 .house-wrp .house{
   box-shadow: 3px 6px 12px rgba(0,0,0,0.1),3px 6px 12px rgba(0,0,0,0.1);

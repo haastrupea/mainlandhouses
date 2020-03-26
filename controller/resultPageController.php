@@ -21,6 +21,7 @@ class resultPageController{
 
 
     protected function generalSearch($price="",$location="",$propType=""){
+      global $config;
       //general info
         $allprice=$this->model->priceRange();
         $allPropsType=$this->model->getAllPropsModel();
@@ -33,7 +34,6 @@ class resultPageController{
         
         //param is from post request submitted on result page
         $result=$this->model->houseSearch($price,$location,$propType);
-
 
         //views
       $resultView= new resultPageView();
