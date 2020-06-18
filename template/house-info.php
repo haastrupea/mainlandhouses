@@ -16,11 +16,13 @@
         <section class="house-basic-info">
             <div class="house-wrp">
                 <div class="house">
+                    <div class="goto-home">
+                        <a href="/"><span class="fa fa-home"> Home</span></a>
+                    </div>
                     <div class="house-img">
                         <div class="img-pc">
                             <?php foreach ($slidePhotos as $key => $value): ?>
                             <img data-index="<?php echo "{$key}" ?>" src="<?php echo $photoDir.$value['image']; ?>" class="img-fluid slide-fade" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
-                            <!-- <img data-index="<?php echo "{$key}" ?>" src="/assets/images/<?php //echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid slide-fade" alt="<?php //echo $value['view']; ?> view" title="<?php //echo $value['description'] ?>"> -->
                             <?php endforeach; ?>
                         </div>
                         <div class="img-overlay-wrp">
@@ -29,7 +31,7 @@
                                 <div class="slide-control-wrp">
                                     <div class="slide-control">
                                     <?php foreach ($slidePhotos as $key => $value): ?>
-                                        <span class="dot" onclick="currentSlide(<?php echo $key+1 ?>)"></span>
+                                        <span class="dot" data-index="<?php echo $key+1 ?>"></span>
                                     <?php endforeach; ?>
                                     </div>
                                 </div>
@@ -102,7 +104,11 @@
         <section class="house-photo-gallery">
             <div class="photo-gallery-wrp">
                 <div class="photo-gallery">
-                    <h5 class="photo-gallery-title"><span>More photos</span> <a class="fa-pull-right see-more" href="#morePhotos">See all</a></h5>
+                    <h5 class="photo-gallery-title"><span>More photos</span>
+                    <?php if(count($housephoto)>=$photoShowMax): ?>
+                        <a class="fa-pull-right see-more" href="#morePhotos">See all</a> 
+                    <?php endif; ?>
+                </h5>
                     <div class="house-photo-wrp">
                         <div id="morePhotos" class="house-photo">
                             <div class="container-fluid">
@@ -111,9 +117,8 @@
                                 <?php foreach ($housephoto as $key => $value): ?>
                                     <div class=" col-md-3 col-sm-6 sm-half mb-3 animated fadeInDown <?php echo ($key>=$photoShowMax)?"photo-hide":""; ?>">
                                         <div class="box-wrp">
-                                        <img data-index="<?php echo "{$key}" ?>" src="<?php echo $photoDir.$value['image']; ?>" class="img-fluid slide-fade" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
-                                            <!-- <img src="/assets/images/<?php //echo "house_0{$houseId}_0{$value['photo_id']}_{$value['view']}_view.{$value['ext']}" ?>" class="img-fluid" alt="<?php //echo $value['view']; ?> view" title="<?php //echo $value['description'] ?>"> -->
-                                        </div>
+                                        <img data-index="<?php echo $key+1 ?>" src="<?php echo $photoDir.$value['image']; ?>" class="img-fluid slide-fade" alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
+                                           </div>
                                     </div>
 
                                 <?php endforeach; ?>
@@ -126,6 +131,54 @@
         </section>
     </div>
 
+    <div id="gallery-modal" class="gallery-modal d-none">
+    <div class="modal-backdrop fade show"></div>
+    <div id="modal-request" style="display: block;" class="modal fade show animated fadeInDown" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog-centered modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Photo Gallery</h5>
+        <a href="#" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </a>
+        </div>
+        <div class="modal-body">
+            <div class="gallery">
+                <div class="summary-view">
+                    <span class="current-position">1</span><span> of </span><span class="total-position">10</span>
+                </div>
+                <div class="prev-btn  bg-dark"><i class="fa fa-angle-left fa-3x text-white"></i></div>
+                <div class="next-btn bg-dark"><i class="fa fa-angle-right fa-3x text-white"></i></div>
+                <div class="gallery-photo-wrp">
+                    
+                <?php foreach ($photoGallery as $key => $value): ?>
+                <div data-index="<?php echo $key; ?>" class="gallery-photo <?php echo $key==0?"active":""; ?>">
+                    <div class="gallery-img d-flex">
+                            <img data-index="<?php echo "{$key}" ?>" src="<?php echo $photoDir.$value['image']; ?>" class="img-fluid slide-fade m-auto " alt="<?php echo $value['view']; ?> view" title="<?php echo $value['description'] ?>">
+                    <?php //break; ?>
+                </div>
+                <div class="gallery-img-description text-center d-none">
+                    picture description goes here
+                </div>
+            </div>
+            <?php endforeach; ?>
+
+            </div>
+
+            </div>
+            
+        </div>
+        <div class="modal-footer pb-1 mt-3">
+            <p class="mainlaind-copyright-footer text-center w-100 m-0">
+                <i class="fa fa-copyright-alt"></i>
+            &COPY; copyright <?php echo date("Y",time()); ?>
+            Mainlandhouses
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
     <div id="modal-container" class="position-fixed w-100 h-100 <?php echo $request?"":"d-none" ?>">
         <div class="modal-backdrop fade show"></div>
         <!-- Modal 1 -->
@@ -143,7 +196,6 @@
       <div class="modal-body">
           <?php if(!empty($postReqData['error'])): ?>
           <div class="alert alert-danger">
-              <!-- This functionality is not available now, we are still in development. -->
               <?php foreach ($postReqData['error'] as $key => $value): ?>
                 <p class="mb-0"><?php echo $value ?></p>
               <?php endforeach; ?>

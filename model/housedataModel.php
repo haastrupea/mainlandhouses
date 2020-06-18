@@ -254,5 +254,3 @@ class housedataModel{
         return ["phoneNo"=>'2348150220461'];
     }
 }
-
-

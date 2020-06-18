@@ -153,10 +153,122 @@
  
 }
 
+.goto-home{
+  position: absolute;
+  right: 30px;
+  z-index: 1;
+  top: 20px;
+}
 
-/* .request-btn a span{
-  font-size: .8em;
-  } */
+.goto-home span{
+  padding: 10px 20px;
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
+  transition: background .5s ease;
+}
+
+.goto-home span:hover{
+  background-color: #b7872785;
+}
+
+.summary-view{
+  position: absolute;
+  right: 10px;
+  z-index: 5;
+  background-color: #ffffff8f;
+  padding: 5px 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.16);
+  top: 15px;
+  color:rgba(0,0,0,.5) ;
+}
+
+/**photogallery styles**/
+.gallery-modal .mainlaind-copyright-footer{
+  color: rgba(0,0,0,0.5);
+    font-size: .9em;
+    font-style: italic;
+}
+
+.gallery-modal .modal-dialog-centered.modal-dialog{
+  /* max-width: 100vh !important; */
+  max-width: 1024px !important;
+}
+
+.gallery-modal .gallery{
+ position: relative;
+}
+
+.gallery-modal .gallery .prev-btn, .gallery .next-btn{
+  position: absolute;
+  z-index: 99999999;
+  top: 0;
+  bottom: 0;
+  max-height: 100px;
+  margin: auto;
+  padding: 25px 15px;
+  cursor: pointer;
+  opacity: .5;
+  transition: opacity .5s ease;
+}
+
+.gallery-modal .gallery .prev-btn:hover, .gallery .next-btn:hover{
+  opacity: 1;
+}
+
+.gallery .next-btn{
+  right: 0;
+}
+
+.gallery-modal .gallery,.gallery-modal .gallery-photo-wrp,.gallery-modal .gallery-photo{
+  height: 100%;
+  }
+
+.gallery-modal .gallery-photo-wrp{
+ overflow: hidden;
+ position: relative;
+ display: flex;
+ flex: 1 1 100%;
+ flex-direction: column;
+ flex-wrap: wrap;
+ min-height: 650px;
+}
+.gallery-modal .gallery-photo{
+  position: absolute;
+  width: 100%;
+  min-width: 100%;
+  transition: margin .5s ease;
+  margin-left: 1000%;
+  background-color: white;
+  display: flex;
+align-items: center;
+justify-content: center;
+}
+/* .gallery-modal .gallery-photo:not(.active){
+ display: none
+} */
+
+.gallery-modal .gallery-photo.next{
+  margin-left:100%;
+  z-index: 1;
+}
+.gallery-modal .gallery-photo.active{
+  margin-left: 0;
+  z-index: 4;
+}
+
+.gallery-modal .gallery-photo.prev{
+  margin-left: -100%;
+  z-index: 2;
+}
+
+
+
+.gallery-modal .modal-dialog-centered img{
+  border-radius: calc(.25rem - 1px);
+}
+
 
   .request-btn a i{
     transform: rotate(-20deg);
@@ -323,6 +435,10 @@ label{
     .img-pc{
         height: 80vh;
         overflow: hidden;
+    }
+
+    .gallery-modal .modal-dialog-centered{
+      padding: 0 15px;
     }
 }
 
