@@ -70,7 +70,7 @@ let handle=function(e){
         e.preventDefault();
         document.querySelector('#modal-container').classList.add('d-none');
         document.querySelector('#gallery-modal').classList.add('d-none');
-
+        document.body.classList.remove('disable-scroll');
         resetGallery()
     }
     //need to change this
@@ -89,6 +89,7 @@ let handle=function(e){
     document.querySelector('.request-btn').addEventListener("click",function(e){
         e.preventDefault();
         document.querySelector('#modal-container').classList.remove('d-none');
+        document.body.classList.add('disable-scroll');
     });
 
     
@@ -141,6 +142,7 @@ var heroSlideControl = document.querySelectorAll(".dot");
 //click on images
 function renderGallery(index){
     index=Number(index);
+    document.body.classList.add('disable-scroll');
     
     //grab gallery modal
     let galleryModal=document.getElementById('gallery-modal');

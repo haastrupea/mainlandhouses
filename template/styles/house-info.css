@@ -5,6 +5,9 @@
   position: relative;
 }
 
+.disable-scroll{
+  overflow: hidden;
+}
 .house-hr{
  background-color: rgba(183, 135, 39, 0.2);
  width: 90%;
@@ -191,10 +194,14 @@
     font-style: italic;
 }
 
+.gallery-modal .modal{
+  overflow-y: scroll;
+}
 .gallery-modal .modal-dialog-centered.modal-dialog{
   /* max-width: 100vh !important; */
   max-width: 1024px !important;
 }
+
 
 .gallery-modal .gallery{
  position: relative;
@@ -414,6 +421,10 @@ justify-content: center;
 label{
   font-size: .9em;
 }
+
+.gallery-modal .gallery-photo-wrp{
+  min-height: 400px;
+ }
   
   }
 
