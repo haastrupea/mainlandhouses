@@ -73,11 +73,8 @@
                                      <div class="house-img">
                                     <?php 
                                     $previewPhoto=$this->model->getPreviewPhoto($value['id']);
-                                    $photoDir=$config['housePictureDir']['categorisedPictures'];
-
-                                    if(empty($previewPhoto['view'])){
                                         $photoDir=$config['housePictureDir']['unCategorisedPictures'];
-                                    }
+                                    
                                     ?>
                                          <img src="<?php echo $photoDir.$previewPhoto['image']; ?>" class="img-fluid slide-fade" alt="<?php echo $previewPhoto['view']; ?> view" title="<?php echo $previewPhoto['description'] ?>">
 

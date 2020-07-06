@@ -1,0 +1,18 @@
+
+.admin-options{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+
+@media screen and (max-width: 660px){
+  .admin-options{
+    flex-direction: column;
+  }
+  .admin-options a{
+    margin-bottom: 15px;
+  }
+}

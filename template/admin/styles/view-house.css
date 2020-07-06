@@ -1,0 +1,14 @@
+.action a{
+  margin: 0 5px;
+}
+
+.house-details .form-control{
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.status{
+  position: relative;
+  left: 0;
+  text-transform: capitalize;
+}

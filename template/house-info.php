@@ -27,6 +27,11 @@
                         </div>
                         <div class="img-overlay-wrp">
                             <div class="img-overlay">
+                               <?php  if($houseStatus=='sold'): ?>
+                               <div class="watermark">
+                               <h1 class="sold-watermark text-danger">SOLD</h1>
+                               </div>
+                               <?php  endif; ?>
                                 <p class="house-condition"><?php echo $houseCat ?></p>
                                 <div class="slide-control-wrp">
                                     <div class="slide-control">
@@ -39,12 +44,14 @@
                                    <?php echo $housePrice ?>
                                    <i class="fa fa-tags"></i>
                                 </div>
+                                <?php if($houseStatus!="sold"): ?>
                                 <div class="request-btn">
                                     <a href="/house/request/<?php echo $houseId; ?>">
-                                        <i class="fa fa-phone fa-2x"></i>
-                                        <span>Agent</span>
+                                    <i class="fa fa-phone fa-2x"></i>
+                                    <span>Agent</span>
                                     </a>
                                 </div>
+                                    <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -179,10 +186,15 @@
     </div>
     </div>
     </div>
+
+    
     <div id="modal-container" class="position-fixed w-100 h-100 <?php echo $request?"":"d-none" ?>">
         <div class="modal-backdrop fade show"></div>
         <!-- Modal 1 -->
         <?php if(empty($postReqData) || $postReqData["valid"]===false): ?>
+
+        <?php if($houseStatus !='sold'): ?>
+
 <div id="modal-request" class="modal fade show animated fadeInDown" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered " role="document">
   <form class="w-100" action="/house/requested" method="POST">
@@ -280,6 +292,7 @@
   </div>
 
     <?php endif; ?>
+    <?php endif; ?>
         <?php if(isset($postReqData['valid']) && $postReqData['valid']===true): ?>
           <!-- Modal 2 -->
 <div id="modal-request-successful" class="modal fade show animated fadeInDown" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -297,9 +310,7 @@
         <h5 class="text-center animated fadeIn">Thank you, your request has been received</h5>
         <h1 class="text-center mt-4 animated"><a target="_blank" href="<?php echo $WhatasappMsgLink; ?>" class="btn btn-outline-success"><i class="fab fa-whatsapp fa-2x"> Chat with agent</i></a> </h1>
         <h6 class="text-center mt-2 animated fadeIn">To discuss scheduling an inspection of the house</h6>
-  <!-- <pre>
-      <?php //var_dump($postReqData) ?>
-  </pre> -->
+  
         <div class="modal-footer pb-1">
           <a href="/house/detail/<?php echo $houseId ?>" type="button" class="btn btn-light btn-outline-success px-4">Done</a>
         </div>

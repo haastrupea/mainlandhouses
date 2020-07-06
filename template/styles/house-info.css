@@ -5,6 +5,22 @@
   position: relative;
 }
 
+div.watermark{
+  position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sold-watermark{
+    text-align: center;
+    line-height: 3;
+    font-size: 15em;
+    transform: rotate(-35deg);
+}
 .disable-scroll{
   overflow: hidden;
 }
@@ -23,6 +39,7 @@
  position: relative;
  height: 100%;
  background-image: linear-gradient(20deg,rgba(0, 0, 0, 0.87) 0%,rgba(0, 0, 0, 0.0) 55%);
+ /* overflow: hidden; */
 }
 
 .img-overlay p.house-condition{
@@ -397,8 +414,17 @@ justify-content: center;
   from {opacity: .4} 
   to {opacity: 1}
 }
+@media (max-width: 640px) {
+
+  .sold-watermark{
+
+    font-size: 5em;
+
+}
+}
 
 @media (max-width: 575.98px) {
+
   .house-desc-para{
     font-size: .9em;
   }
@@ -443,6 +469,7 @@ label{
 }
 
 @media (orientation: landscape) {
+ 
     .img-pc{
         height: 80vh;
         overflow: hidden;
@@ -473,7 +500,6 @@ transition: border .3s ease;
 }
 
 .position-fixed .input-group-text {
- 
   color: white;
   text-align: center;
   white-space: nowrap;
@@ -487,9 +513,11 @@ transition: border .3s ease;
   background-color: #b78727;
   border-color: #b78727;
 }
+
 label{
   text-transform: capitalize;
 }
+
 label[for=instalment_duration]{
   background-color: aliceblue;
     padding: 5px 10px;

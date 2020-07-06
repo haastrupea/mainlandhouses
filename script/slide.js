@@ -86,11 +86,16 @@ let handle=function(e){
         });
     });
     
-    document.querySelector('.request-btn').addEventListener("click",function(e){
-        e.preventDefault();
-        document.querySelector('#modal-container').classList.remove('d-none');
-        document.body.classList.add('disable-scroll');
-    });
+    let req = document.querySelector('.request-btn');
+
+    if(req!=null){
+        req.addEventListener("click",function(e){
+            e.preventDefault();
+            document.querySelector('#modal-container').classList.remove('d-none');
+            document.body.classList.add('disable-scroll');
+        });
+    }
+  
 
     
 

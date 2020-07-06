@@ -1,0 +1,50 @@
+.table{
+  text-align: center;
+}
+
+.upload-progress-bar{
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  height: 20px;
+  margin: auto 0;
+}
+.upload-progress-bar .upload-progress{
+height: 100%;
+width: 20%;
+background-color: green;
+}
+
+#preview-uploading-image{
+  max-width: 80%;
+  max-height: 400px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.size [name="size"],
+.size_unit [name="size_unit"],
+.category [name="category"],
+.houseCategory [name="houseCategory"],
+.propType [name="propType"],
+.country [name="country"],
+.state [name="state"],
+.area [name="area"],
+.address [name="address"],
+.price [name="price"],
+.currency [name="currency"],
+.room [name="room"],
+.bath [name="bath"],
+.decription [name="decription"],
+.features [name="features"],
+.amenities[name="amenities"]
+ {
+border: 1px solid #dc3545;
+}
+
+select{
+  text-transform: capitalize;
+}

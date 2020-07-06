@@ -1,0 +1,35 @@
+.vh100{
+  height: 100vh;
+}
+
+.vh100 .card{
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1),6px 3px 10px rgba(0,0,0,0.3);
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+body{
+  background-color: #b78727;
+  background-image: linear-gradient(45deg, #b78727 5%, purple 100%);
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+
+.login-btn,form .input-group-text{
+  background-color: #b78727;
+  color: white;
+}
+
+form h2{
+  color: #b78727;
+    border: 5px solid transparent;
+    border-left: 5px solid;
+    padding-left: 15px;
+    background-color: #9328281a;
+    border-radius: 0 5px 5px 0;
+}
+
+form label{
+  color: purple;
+}

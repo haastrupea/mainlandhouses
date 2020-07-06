@@ -1,0 +1,25 @@
+.vh100{ 
+  height: calc(100vh - 100px);
+}
+a{
+  text-decoration: none !important;
+}
+body{
+  overflow-x: hidden;
+}
+
+.logo{
+  color: #b78727;
+}
+
+.row form button.search-house{
+  background-color: #b78727;
+  color: white;
+}
+
+.row form.search-house-by-id-form{
+  width: 100%;
+}
+.row form.search-house-by-id-form input{
+  text-align: center;
+}

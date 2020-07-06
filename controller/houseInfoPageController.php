@@ -18,7 +18,8 @@ class houseInfoPageController{
         $housephoto=$this->model->getphotogallery($id);
         $photoShowMax=4;//show 4 pictures from the gallery and hide the rest
         $photoGallery=[];
-        $photoDir=$config['housePictureDir']['categorisedPictures'];
+        // $photoDir=$config['housePictureDir']['categorisedPictures'];
+        $photoDir=$config['housePictureDir']['unCategorisedPictures'];
         //build up  slide images
         $slidePhotos=[];
         
@@ -36,7 +37,7 @@ class houseInfoPageController{
                     array_push($slidePhotos,$value);
                 }
             }else{
-                $photoDir=$config['housePictureDir']['unCategorisedPictures'];
+                // $photoDir=$config['housePictureDir']['unCategorisedPictures'];
                 if(count($slidePhotos)<3){
                     array_push($slidePhotos,$value);
                 }
@@ -45,6 +46,7 @@ class houseInfoPageController{
 
         //load all house info into variables
         $houseId=$houseInfo['id'];
+        $houseStatus=$houseInfo['status'];
         $houseCat=$houseInfo['category'];
         $houseLocation=$houseInfo['location'];
         $houseAddr=$houseInfo['address'];
@@ -77,7 +79,7 @@ class houseInfoPageController{
             $pNote=$postReqData['data']['personal_Note'];
         }
 
-        $WhatasappMsg="Hi, my name is $fullName, i am interested in the house at $houseAddr";
+        $WhatasappMsg="Hi, my name is $fullName, i am interested in the house at $houseAddr with id $houseId";
         $requestWhatasappText=rawurlencode($WhatasappMsg);
 
         $WhatasappMsgLink="https://api.whatsapp.com/send?phone=$agentPhone&text=$requestWhatasappText";

@@ -36,7 +36,15 @@ class database{
     }
 
     public function __clone(){}
-
+    public function startTransaction(){
+        $this->_dbcon->beginTransaction();
+    }
+    public function rollBackTransaction(){
+        $this->_dbcon->rollBack();
+    }
+    public function commitTransaction(){
+        $this->_dbcon->commit();
+    }
     public function getConnection()
     {
         //to perform non crud operation
@@ -45,12 +53,14 @@ class database{
 
     private function queryDb($query,array $param=null,$getresult=true,$fetchStyle=\PDO::FETCH_ASSOC)
     {    
+        // $this->_dbcon->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
         $qry=$this->_dbcon->prepare($query);
         $satus=is_null($param)?$qry->execute(): $qry->execute($param);
         //return result
         if ($getresult) {
             return $satus?$qry->fetchAll($fetchStyle):false;   
         }
+        return true;
     }
     
     public function crudQuery($qry,array $param=null,$fetchStyle=\PDO::FETCH_ASSOC)
