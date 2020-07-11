@@ -337,7 +337,7 @@ class housedataModel{
     public function getAllLocations()
     {
         //get all Unique location from db
-        $sql="SELECT area_located from Houses GROUP BY area_located ORDER BY COUNT(area_located) DESC";
+        $sql="SELECT area_located from Houses where status ='listed' GROUP BY area_located ORDER BY COUNT(area_located) DESC";
         $result=$this->dbCon->crudQuery($sql);
         return $result;
     }
@@ -466,7 +466,7 @@ class housedataModel{
             //get the real id of the house
             $real_id=$this->gethouseRealId($house_id);
             //get all the house pictures
-            $sql="SELECT view,description,ext,image FROM House_photo_gallery where house_id=:hs_id and view='front' LIMIT 1";
+            $sql="SELECT view,description,ext,image FROM House_photo_gallery where house_id=:hs_id LIMIT 1";
             $house=$this->dbCon->crudQuery($sql,[':hs_id'=>$real_id]);
             if(empty($house)){
                 $house=[
