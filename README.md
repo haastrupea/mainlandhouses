@@ -1,8 +1,9 @@
 # mainlandhouses
-the code is a real estate app, it allows for the
-## Setup
+the code is a real estate app, it allows for the listing of some property type
 
-create "config" folder in the root of the project and create "database.php" in to it
+## Setting up
+
+-create "config" folder in the root of the project and create "database.php" in to it
 
 and fill it with the following content
 
@@ -14,6 +15,6 @@ $config['database']['password'] =""; //db user password
 $config['housePictureDir']['unCategorisedPictures']="/assets/images/houses" //house images folder    
  ```
  
- create mysql db and import the "dbStructureBackup.sql" in the root of the project to populate the db with the database structure
+-create mysql db and import the "dbStructureBackup.sql" in the root of the project to populate the db with the database structure
  
  # instruction to setup admin functionality will be provided later.
